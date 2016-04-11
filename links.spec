@@ -4,7 +4,7 @@
 #
 Name     : links
 Version  : 1.03
-Release  : 4
+Release  : 5
 URL      : http://www.jikos.cz/~mikulas/links/download/links-1.03.tar.gz
 Source0  : http://www.jikos.cz/~mikulas/links/download/links-1.03.tar.gz
 Summary  : No detailed summary available
@@ -55,12 +55,16 @@ make VERBOSE=1 V=1 %{?_smp_mflags} check
 %install
 rm -rf %{buildroot}
 %make_install
+## make_install_append content
+ln -sv links %{buildroot}/usr/bin/elinks
+## make_install_append end
 
 %files
 %defattr(-,root,root,-)
 
 %files bin
 %defattr(-,root,root,-)
+/usr/bin/elinks
 /usr/bin/links
 
 %files doc
