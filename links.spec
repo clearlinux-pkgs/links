@@ -4,7 +4,7 @@
 #
 Name     : links
 Version  : 1.03
-Release  : 10
+Release  : 11
 URL      : http://www.jikos.cz/~mikulas/links/download/links-1.03.tar.gz
 Source0  : http://www.jikos.cz/~mikulas/links/download/links-1.03.tar.gz
 Summary  : No detailed summary available
