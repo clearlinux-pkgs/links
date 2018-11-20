@@ -1,3 +1,6 @@
+libbz2.so.0
 libc.so.6
-libcrypto.so.1.0.0
-libssl.so.1.0.0
+libcrypto.so.1.1
+liblzma.so.5
+libssl.so.1.1
+libz.so.1

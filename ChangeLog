@@ -1,121 +1,1390 @@
-=== RELEASE 1.03 ===
+=== RELEASE 2.17 ===
 
-Sat Nov 19 01:21:39 MET 2011 mikulas:
+Fri Sep  7 00:04:41 CEST 2018 mikulas:
+
+	Fix verifying SSL certificates for numeric IPv6 addresses
+
+Thu Sep  6 22:07:03 CEST 2018 mikulas:
+
+	Delete the option -ftp.fast - it doesn't always work and ftp performance
+	is not an issue anymore
+
+	Passive ftp enabled by default because it will more likely work than
+	the port command
+
+Wed Sep  5 22:39:11 CEST 2018 mikulas:
+
+	Add bold and monospaced Turkish letter 'i' without a dot
+
+Wed Sep  5 01:28:31 cet 2018 mikulas:
+
+	On OS/2 allocate OpenSSL memory from the lower heap
+	It fixes SSL on systems with old 16-bit TCP/IP stack
+
+Fri Aug 31 18:06:26 CEST 2018 mikulas:
+
+	Fix IPv6 on OpenVMS Alpha
+
+Thu Jul 26 07:34:24 CEST 2018 mikulas:
+
+	Support mouse scroll wheel in textarea
+
+Thu Jul 26 05:24:17 CEST 2018 mikulas:
+
+	Delete the option -http-bugs.bug-302-redirect - RFC7231 allows the
+	"buggy" behavior and defines new codes 307 and 308 that retain the
+	post data
+
+Wed Jul 18 21:00:23 CEST 2018 mikulas:
+
+	X11 - fixed colormap leak when creating a new window
+
+Mon Jul 16 02:33:26 CEST 2018 mikulas:
+
+	Fixed an infinite loop that happened in graphics mode if the user
+	clicked on OK in "Miscellaneous options" dialog and more than one
+	windows were open.
+	This bug was introduced in Links 2.15.
+
+Sun Jul 15 21:36:04 CEST 2018 mikulas:
+
+	Support 6x6x6 RGB palette in 256-bit color mode on framebuffer
+	The palette may be switched in the "video options" menu
+	The 8x8x4 palette has better image quality
+	The 6x6x6 palette preserves gray
+
+Sat Jul 14 04:49:45 cet 2018 mikulas:
+
+	Implement dithering properly on OS/2 in 15-bit and 16-bit color mode
+
+	In 8-bit mode, Links may optionally use a private palette - it
+	improves visual quality of Links images, but degrades visual
+	quality of other concurrently running programs.
+
+Thu Jul 12 23:06:48 CEST 2018 mikulas:
+
+	Improve scrolling smoothness when the user drags the whole document
+
+Thu Jul 12 06:48:00 cet 2018 mikulas:
+
+	On OS/2, allocate large memory blocks directly (not with malloc)
+	- it reduces memory waste
+
+Thu Jul 12 00:56:57 cet 2018 mikulas:
+
+	Fixed a bug that setting terminal title and resizing a terminal didn't
+	work on OS/2 and Windows. The bug was introduced in Links 2.16 when
+	shutting up coverity warnings.
+
+Sun Jun 17 15:31:28 CEST 2018 mikulas:
+
+	Set link color to yellow by default
+
+Sun Jun 17 14:04:07 CEST 2018 mikulas:
+
+	Delete the option -http-bugs.bug-post-no-keepalive
+	It was needed in 1999 to avoid some bug in some http server and it is
+	not needed anymore
+
+Tue Jun  5 20:24:42 CEST 2018 mikulas:
+
+	Trust Content-Length on HTTP/1.0 redirect requests
+
+	This fixes hangs with misbehaving servers that honor Connection:
+	keep-alive but send out HTTP/1.0 reply without Connection: keep-alive.
+	Links thought that they don't support keep-alive and waited for the
+	connection to close (for example http://www.raspberrypi.org/)
+
+Tue May 22 00:51:35 CEST 2018 mikulas:
+
+	Use keys 'H' and 'L' to select the top and bottom link on the current
+	page
+
+=== RELEASE 2.16 ===
+
+Sun Apr 29 17:12:24 CEST 2018 mikulas:
+
+	Improve handling of the DELETE key
+	Delete is used for both deleting and scrolling
+	If the last keypress was captured in a form field, DELETE deletes
+	If the last keypress was not captured DELETE scrolls
+
+Sat Apr 28 21:49:08 CEST 2018 mikulas:
+
+	Implement the bracketed paste mode - a text can be pasted only to input
+	fields, the pasted text won't be misinterpreted as key commands
+
+Sun Apr 22 17:28:05 CEST 2018 mikulas:
+
+	Fix bugs found by coverity:
+	* bad arguments to sizeof
+	* missing int->unsigned long long conversions in image scaling
+	* unchecked return of the close function
+	* a possible NULL pointer dereference in directfb.c
+	* a memory leak on invalid double number
+	* missing va_end
+	* non-working "No keepalive connection after POST request" option
+	and some other discrepancies which didn't result in any violation
+
+Sat Apr 21 23:13:49 CEST 2018 mikulas:
+
+	Fix a crash in proxy authentication code (introduced in 2.15)
+
+Thu Mar 29 20:06:50 CEST 2018 mikulas:
+
+	Fixed internal error "invalid set_handlers call" on framebuffer
+	if we suspend and terminate at the same time
+
+Thu Mar 29 19:08:29 cet 2018 mikulas:
+
+	When compiled without SVG, rewrite wikipedia svg math urls with png urls
+
+=== RELEASE 2.15 ===
+
+Thu Jan 18 19:12:02 CET 2018 mikulas:
+
+	Rewrite google docs URLs to the download link, so that the file can be
+	viewed in external viewer
+
+Mon Nov 20 01:09:20 CET 2017 mikulas:
+
+	Add the list of domains for which proxy is not used
+
+Sun Nov 19 00:57:26 CET 2017 mikulas:
+
+	Temporarily replace the stderr handle with /dev/null when decoding
+	png or svg images because the libraries may write to stderr
+
+Sat Nov 11 21:31:45 CET 2017 mikulas:
+
+	Fix improper restarts of connection when http compression is used
+
+Thu Oct 12 21:07:06 CEST 2017 mikulas:
+
+	Free cache when using the -source flag, so that memory consumption is
+	not dependent on downloaded file size
+
+Thu Oct 12 20:39:00 CEST 2017 mikulas:
+
+	Do not download compressed files. When the server returns compressed
+	file and we are downloading, restart the connection without compression.
+
+Tue Oct 10 19:38:04 CEST 2017 mikulas:
+
+	Allow browsing files containing characters < 32 in the filename
+
+Sun Oct  8 22:28:56 CEST 2017 mikulas:
+
+	Limit the number of OpenMP threads to 8
+
+Sun Oct  8 21:47:12 CEST 2017 mikulas:
+
+	Fix premature call to OPENSSL_cleanup while some SSL objects could
+	still exist
+
+Sat Sep 30 12:44:39 CEST 2017 mikulas:
+
+	Enable -ftree-vectorize and -ffast-math for GCC, so that it uses
+	vector instructions. It improves performance of image scaler.
+
+Mon Sep  4 04:46:20 CEST 2017 mikulas:
+
+	Support international domain names
+
+Mon Aug 28 04:24:09 CEST 2017 mikulas:
+
+	Fix reordering of blocked URLs each time options were saved and loaded
+
+Wed Aug  2 19:35:00 CEST 2017 mikulas:
+
+	Fix reading one byte beyond allocated space in case of corrupted
+	UTF-8 data - CVE-2017-11114
+
+Tue Jul 18 22:10:00 CEST 2017 mikulas:
+
+	Support the brotli compression algorithm using libbrotli:
+	https://github.com/bagder/libbrotli
+
+Sun Jul 16 15:19:17 CEST 2017 mikulas:
+
+	Support lzip compression
+
+Sun Jul  2 21:31:32 CEST 2017 mikulas:
+
+	Add a new main menu item 'Windows' for switching windows on framebuffer
+
+Thu Jun 22 19:50:01 CEST 2017 mikulas:
+
+	Fix an internal error if the gpm server is terminated while links is
+	running on a framebuffer
+
+Wed Jun 21 01:22:27 CEST 2017 mikulas:
+
+	Use fsync() when writing the bookmarks or settings
+
+Sat Jun  3 01:25:07 CEST 2017 mikulas:
+
+	Clear host entry in DNS cache when connection failed
+
+Mon May 29 02:20:08 CEST 2017 mikulas:
+
+	Use built-in SSL certificates
+	This improves tor hardening (the tor exit node could not differentiate
+	links users from each other based on installed certificates)
+	It also makes it possible to use certificate verification on systems
+	with no default certificate store
+
+Sat May 27 21:17:28 CEST 2017 mikulas:
+
+	Encode strings to UTF-8 when storing them in a history, it fixes a bug
+	when browsing the history if Links is run on multiple terminals with
+	different character sets
+
+Wed Mar 29 20:48:43 CEST 2017 mikulas:
+
+	Use absolute time when calculating the time to flush DNS cache, HTTPS
+	session cache and keepalive connection cache, so that the cache gets
+	flushed when the machine is kept suspended for a long time.
+
+Sat Mar 18 22:17:36 CET 2017 mikulas:
+
+	Report IP addresses in the "Document info" box.
+
+Fri Mar 10 21:05:08 CET 2017 mikulas:
+
+	Implement a small connection timeout when connecting to a host with
+	multiple addresses, so that there is faster fallback from IPv6 to IPv4.
+
+Tue Mar  7 20:30:01 CET 2017 mikulas:
+
+	Replace OpenSSL malloc functions with CRYPTO_set_mem_functions, so that
+	when malloc returns NULL, we can free some cached data and retry
+
+Sat Feb 25 15:59:57 CET 2017 mikulas:
+
+	Avoid reallocating the line array over and over with the same size.
+	Most realloc implementations fall back to no operation if a memory chunk
+	is reallocated to the same size, however, the address sanitizer always
+	copies the array - this resulted in quadratic complexity and performance
+	degradation on big files.
+
+Fri Feb 24 20:42:48 CET 2017 mikulas:
+
+	Refactor list processing code so that it conforms to C89 aliasing rules
+	Also, avoid warning when using ubsan on x32 architecture
+
+Sun Feb 19 23:21:29 CET 2017 mikulas:
+
+	Terminate keepalive connection when changing the IPv6 address preference
+
+Sun Feb 19 22:41:08 CET 2017 mikulas:
+
+	Links contained a code that tests for ".onion" address suffix and
+	rejects DNS lookups for it. The code was buggy, it was never activated
+	and it accessed invalid memory.
+
+Sat Jan 28 20:45:34 CET 2017 mikulas:
+
+	Avoid memcpy with NULL source argument and zero length (it doesn't
+	crash, but it's formally incorrect and the sanitizer warns about it)
+
+Wed Jan 18 22:52:09 CET 2017 mikulas:
+
+	Make the "dns-prefetch" link prefetch just dns, not the whole document
+
+Wed Jan 18 21:16:27 CET 2017 mikulas:
+
+	Fix compilation failure on OpenBSD because OpenBSD removed
+	the timeout_* macros from libevent
+
+Tue Jan 17 21:31:38 CET 2017 mikulas:
+
+	Use OpenSSL functions X509_check_host and X509_check_ip if available
+
+Mon Dec 26 16:49:38 CET 2016 mikulas:
+
+	Report status when formatting document or searching
+
+Wed Dec 14 04:55:32 CET 2016 mikulas:
+
+	Use session cache on https
+
+=== RELEASE 2.14 ===
+
+Thu Nov  3 19:45:34 CET 2016 mikulas:
+
+	Enable DECC$EFS_CHARSET on OpenVMS, so that we can browser files and
+	directories with extended names
+
+Wed Nov  2 20:35:31 CET 2016 mikulas:
+
+	Limit keepalive of ciphers with 64-bit block size to mitigate
+	the SWEET32 attack
+
+Wed Nov  2 19:14:33 CET 2016 mikulas:
+
+	Disable SSL compression to avoid the CRIME attack
+
+Fri Oct 28 22:52:49 CEST 2016 mikulas:
+
+	On Windows, add an entry to programs in control panel, that allows
+	uninstalling Links
+
+Fri Oct 28 21:25:28 CEST 2016 mikulas:
+
+	Report home directory in the "Version" window
+
+Sat Oct 22 13:17:04 CEST 2016 mikulas:
+
+	On Windows, preload font data in a background thread, to minimize a
+	stall when viewing SVG image for the first time.
+
+Sat Oct  8 17:14:59 CEST 2016 mikulas:
+
+	Improved tor hardening - when the user toggles the "Only Proxies" option
+	(i.e. when connecting to tor), we reset certain other options to their
+	default values, so that it is not possible to identify user behind tor
+	based on the selected options.
+
+Thu Oct  6 14:39:26 CEST 2016 mikulas:
+
+	Use keys 'P' and 'L' to scroll up and down
+
+Thu Sep 29 23:40:34 CEST 2016 Juhani Haverinen <juhani.haverinen@gmail.com>:
+
+	Fix a memory leak when copying the current url to clipboard
+	(the bug was introduced in Links 2.13)
+
+Sat Sep  3 20:02:26 CEST 2016 mikulas:
+
+	Fix crash when the user pressed Ctrl-G on a form field
+	(the bug was introduced in Links 2.13)
+
+Fri Aug 19 22:35:54 CEST 2016 mikulas:
+
+	Workaround for a bug in librsvg that makes mathematics on Wikipedia
+	unreadable
+
+Fri Aug 19 19:05:55 CEST 2016 mikulas:
+
+	Support fourth and fifth mouse button in gpm and framebuffer
+
+Thu Aug 18 19:34:47 CEST 2016 mikulas:
+
+	Fixed bugs when downgrading SSL connection while https proxy or socks
+	proxy is used
+
+Tue Aug 16 18:53:53 CEST 2016 mikulas:
+
+	Security bug fixed: Don't load or render the content of
+	"407 Proxy Authentication Required" reply when using https proxy.
+	This avoids the FalseCONNECT attack.
+
+	Also, don't allow 401 and 407 responses to set cookies.
+
+Wed Jul 27 21:38:37 CEST 2016 mikulas:
+
+	Pop openssl error stack on every error - make sure that SSL errors on
+	one connection do not affect other connections
+
+Sun Jul 17 21:10:12 CEST 2016 mikulas:
+
+	Use libc tree functions from <search.h> for searching the cache
+
+Thu Jul  7 19:39:15 CEST 2016 mikulas:
+
+	Set the GD_NOAUTO flag for the directfb driver, so that this driver is
+	never selected automatically. The directfb subsystem is buggy, it can
+	corrupt graphics or even cause system crash, so select this driver only
+	if the user explicitly requests it with '-driver directfb'
+
+=== RELEASE 2.13 ===
+
+Sat Jun 18 14:15:55 CEST 2016 mikulas:
+
+	Page up and page down scroll slightly less than a page
+
+Fri Jun 17 23:57:23 CEST 2016 mikulas:
+
+	Use domain list from publicsuffix.org to prevent setting cookies on
+	public domains.
+	Also fix a bug that existed in previous links versions:
+	bla.com could register cookie for la.com or a.com
+
+Sat Jun 11 17:59:17 CEST 2016 mikulas:
+
+	Fixed non-working mouse wheel on Syllable
+	Workaround for getaddrinfo bug on Syllable
+
+Sat Jun 11 15:16:41 CEST 2016 mikulas:
+
+	Support horizontal scroll wheel on Windows
+
+Tue Jun  7 19:10:11 CEST 2016 mikulas:
+
+	Fixed a bug in the X driver that characters with unicode codes 128-255
+	could not be entered with some locales
+
+Thu Jun  2 19:19:56 CEST 2016 mikulas:
+
+	Security bug fixed: Use separate unix domain socket for anonymous
+	instances, so that the anonymous instance won't connect to non-anonymous
+	one
+
+Sun May  8 21:20:38 CEST 2016 mikulas:
+
+	<samp> element
+
+Sun May  8 20:33:37 CEST 2016 mikulas:
+
+	In case of certification verification failure, don't pop up multiple
+	dialog windows asking for the same server
+
+Sun Mar 13 19:10:27 CET 2016 mikulas:
+
+	Do not lookup .onion addresses directly, as specified by rfc7686
+
+Wed Jan 13 01:16:49 CET 2016 Jakub Bogusz <qboosh@pld-linux.org>:
+
+	Updated Polish Translation
+
+Wed Oct 21 19:25:09 CEST 2015 mikulas:
+
+	Security enhancement: Warn if the SSL/TLS method was downgraded
+
+=== RELEASE 2.12 ===
+
+Sat Sep 12 21:03:14 CEST 2015 mikulas:
+
+	Free cookies when changing the 'only proxies' checkbox - i.e. when
+	entering or leaving tor mode
+
+Thu Sep 10 00:04:11 CEST 2015 mikulas:
+
+	Do not record compile time to allow reproducible builds
+
+Tue Sep  8 20:57:26 CEST 2015 mikulas:
+
+	Support SSL client certificates
+
+Mon Sep  7 20:55:44 CEST 2015 mikulas:
+
+	Security bug fixed: warn if the server uses old SSL2 or SSL3 protocol
+	to avoid the POODLE vulnerability
+
+=== RELEASE 2.11 ===
+
+Tue Aug 25 18:44:58 CEST 2015 mikulas:
+
+	Improve entropy collcetion on OpenVMS. It is still far from ideal.
+
+Thu Aug 20 19:35:45 CEST 2015 mikulas:
+
+	Fixed a bug - when a links process attached to another instance in
+	graphics mode, it would occasionally loop, consuming 100% CPU
+
+Sun Jul 26 18:36:44 CEST 2015 mikulas:
+
+	An option to take language and charset from the LANG variable
+
+Sat Jul 25 16:18:16 CEST 2015 mikulas:
+
+	Verify SSL certificates
+
+=== RELEASE 2.10 ===
+
+Fri Jul  3 00:40:22 CEST 2015 mikulas:
+
+	Fix "Counld not assing boundary" bug when posting a form
+	The bug was found by Greg Cook
+
+Mon Jun 15 23:33:54 CEST 2015 mikulas:
+
+	SVG support using the rsvg library
+
+Sat Jun 13 19:47:43 CEST 2015 mikulas:
+
+	Attach to existing links instance instead of creating a new instance
+
+Sun May 17 10:17:25 CEST 2015 mikulas:
+
+	Detect image type based on the first few bytes rather than on
+	content-type
+
+Fri May 15 20:13:23 CEST 2015 Volker Schatz <linksbrowser@volkerschatz.com>:
+
+	New glyphs taken from Volker's git
+
+Thu Feb 26 00:46:48 CET 2015 mikulas:
+
+	Fixed a bug on Windows where dns lookup got stuck if we closed the
+	primary instance (which resulted in fork) while the lookup was in
+	progress
+
+Sat Jan 31 16:56:31 CET 2015 mikulas:
+
+	Use OpenMP in the image scaler
+
+Sat Jan 31 11:10:27 CET 2015 mikulas:
+
+	Fixed a bug where the output of font sharpening depended on data read
+	from uninitialized memory
+
+Sat Jan 24 01:19:49 CET 2015 mikulas:
+
+	Preallocate downloaded files on Linux
+
+Sun Jan 18 07:11:21 CET 2015 mikulas:
+
+	Support libevent and libev
+
+Sat Jan 17 06:44:01 CET 2015 mikulas:
+
+	Enable SSL SNI, some servers need it
+
+Wed Jan 14 02:43:25 CET 2015 mikulas:
+
+	Test for RAND_* functions in configure because libressl doesn't have
+	them
+
+Sat Jan  3 18:26:21 CET 2015 mikulas:
+
+	Support keepalive on https connections
+
+=== RELEASE 2.9 ===
+
+Sun Dec 21 15:08:30 CET 2014 mikulas:
+
+	Work around some screen-corruption bugs in the OpenVMS terminal driver
+
+Sun Nov 30 18:57:30 CET 2014 mikulas:
+
+	Support mouse wheel in framebuffer (unfortunatelly we can't support it
+	in text mode because when we instruct gpm to send us the wheel event,
+	gpm stops drawing the cursor when the mouse is moved).
+
+Tue Nov 25 22:07:12 CET 2014 mikulas:
+
+	Pring "^" and "_" for <sub> and <sup> tags in text mode
+
+Wed Nov  5 20:11:12 CET 2014 mikulas:
+
+	An option to fake Firefox in the HTTP header. It modifies User-Agent and
+	several other options to be more Firefox-like. This option is also
+	automatically turned on when "Connect only via proxies or Socks (useful
+	for tor)" is selected. It makes it safer to use Links with tor.
+
+Sat Jul 26 16:16:15 CEST 2014 mikulas:
+
+	Fixed quadratic complexity in the text renderer when exteremely long
+	lines were used
+
+Tue Jun 24 22:26:47 CEST 2014 mikulas:
+
+	Do not print the character 0x9b if the display character set doesn't
+	have it, because it is interpreted as a control character on the Linux
+	console
+
+Sat May 17 16:51:18 CEST 2014 mikulas:
+
+	An option to break long lines in <pre> sections
+
+Thu May 15 20:02:52 CEST 2014 mikulas:
+
+	Consume less memory when 8-bit gamma correction is used
+
+Wed Apr 16 20:59:57 CEST 2014 mikulas:
+
+	Updated the list of top level domains
+
+Sat Apr  5 04:19:56 CEST 2014 mikulas:
+
+	Use malloc_trim to return unused memory to the system
+
+Thu Mar 27 02:25:09 CET 2014 mikulas:
+
+	Support RFC5987 for filenames
+
+Wed Mar 26 02:32:50 CET 2014 mikulas:
+
+	Support StaticColor in the X-window driver
+
+Tue Mar 25 03:58:45 cet 2014 mikulas:
+
+	Fix crash on OS/2 if image is wider than 10921 pixels
+
+Wed Mar 19 19:49:57 CET 2014 mikulas:
+
+	Use clock_gettime if available
+
+Sun Mar  2 03:54:47 CET 2014 mikulas:
+
+	The ability to set screen margins for text mode and framebuffer
+
+Mon Feb 24 18:15:08 CET 2014 mikulas:
+
+	Fix palette corruption on framebuffer when links instance was terminated
+	while it was not active
+
+Sun Feb  2 21:50:48 CET 2014 mikulas:
+
+	Improve the gif decoder to accept more images
+
+Sun Feb  2 18:29:30 CET 2014 mikulas:
+
+	Increase the amount of data read from the socket, it improves speed when
+	loading big images
+
+Fri Nov 29 01:22:43 CET 2013 mikulas:
+
+	Accept "text/xml" as html type
+
+=== RELEASE 2.8 ===
+
+Sat Sep 14 22:42:15 CEST 2013 mikulas:
+
+	Fixed a memory leak if TIFF download was interrupted
+
+Sat Aug 24 17:59:01 cet 2013 mikulas:
+
+	DOS DJGPP port
+
+Sun Jul 14 23:35:49 CEST 2013 mikulas:
+
+	Do not save lines starting with space to URL history on the disk
+	(idea by Volker Schatz)
+
+Sun Jul 14 23:35:28 CEST 2013 Volker Schatz <linksbrowser@volkerschatz.com>
+
+	Do not misreport Date header value as last-modified date
+		in the info box popping up on "=".
+	New graphics glyphs
+
+Wed May 15 00:44:53 CEST 2013 Samuli Suominen <ssuominen@gentoo.org>:
+
+	Fixed file 045e.png. It was not compatible with libpng-1.6
+
+Wed May 15 00:43:27 CEST 2013 mikulas:
+
+	Test integers addition for overflow. This fixes possible crashes due to
+	overflows, they could possibly be security-sensitive.
+
+Sat Apr  6 19:00:07 CEST 2013 mikulas:
+
+	Fixed a bug in Xwindow driver when images larger than 65536
+	pixels were used
+	Fixed some integer overflows when scaling images larger than 65536
+	pixels
+
+Wed Jan  2 02:07:43 CET 2013 mikulas:
+
+	OpenVMS port
+
+Wed Dec 12 04:52:33 MET 2012 mikulas:
+
+	Fixed invalid pointer comparison (comparing if NULL is smaller
+	than non-NULL pointer) that could result in failures with certain
+	compilers
+
+Wed Nov  7 22:43:45 CET 2012 mikulas:
+
+	Fixed IPv6 detection on OpenBSD
+
+Sat Sep 22 03:01:58 CEST 2012 mikulas:
+
+	Fixed an internal error in decompressed file cache if Links
+	was running out of memory and was freeing cached data
+
+Wed Sep 19 22:40:04 MET 2012 mikulas:
+
+	An option that allows the user not to save URL history
+
+Sat Sep  1 18:26:50 CEST 2012 mikulas:
+
+	An option to send do not track request
+
+Thu Aug 16 04:19:58 CEST 2012 mikulas:
+
+	Reduced CPU consumption when downloading big files
+
+Tue Aug 14 21:52:43 CEST 2012 mikulas:
+
+	Fixed a crash if the user selects "Save as" and the document has no
+	header (the bug was introduced in Links 2.7pre1)
+
+Tue Aug 14 21:01:39 CEST 2012 mikulas:
+
+	Parse FTP directories on VMS FTP server
+
+Mon Aug 13 21:39:09 CEST 2012 mikulas:
+
+	Use a blocking pipe when communicating with the dns process, it
+	fixes a possible error when system pipe buffer is too small
+
+Mon Aug  6 23:31:44 CEST 2012 mikulas:
+
+	Workaround for bugs on GNU Hurd
+
+Sat Jul 28 01:21:18 CEST 2012 mikulas:
+
+	data: url
+
+Fri Jul 20 19:00:30 MET 2012 mikulas:
+
+	Accept color in #xxx format (besides usual #xxxxxx)
+
+Tue Jul 10 22:45:19 CEST 2012 mikulas:
+
+	Fixed an infinite retry loop when the server terminates connection
+	prematurely
+
+Sun Jul  8 20:23:43 CEST 2012 mikulas:
+
+	Fixed some races in the framebuffer driver that could result in
+	display corruption if the user is switching virtual consoles too
+	quickly
+
+Thu Jul  5 22:35:57 CEST 2012 mikulas:
+
+	Don't save URLs with password to history file on a disk
+
+Sat Jun 30 17:32:11 CEST 2012 mikulas:
+
+	Fixed a rare bug where image alpha channel was not applied correctly
+
+=== RELEASE 2.7 ===
+
+Sat Jun 23 23:02:47 CEST 2012 mikulas:
+
+	Fixed a bug that horizontal line <hr> was not displayed when
+	terminal was set to utf-8
+
+Sat Jun 23 22:11:36 CEST 2012 mikulas:
+
+	Fixed bad palette in framebuffer on TGA on Alpha
+
+Sat Jun 23 20:06:38 CEST 2012 mikulas:
+
+	Fixed a bug that \001 was displayed instead of a non-breaking space
+	when converting to ascii
+
+Po Jun 18 03:10:07 CEST 2012 mikulas:
+
+	Support IPv6
+	Support multiple addresses (try to connect to all of them)
+
+Ne Jun 17 22:32:52 CEST 2012 mikulas:
+
+	Fix memory leak in ftp
+
+Tue Jun 12 02:31:05 MET 2012 mikulas:
+
+	Fixed incorrect display when aspect ratio was changed
+	while multiple windows were open
+
+=== RELEASE 2.7pre1 ===
+
+Sat Jun  2 13:47:17 MET 2012 mikulas:
+
+	Fixed a bug that blocked URLs didn't work if proxy was used
+
+Sun May 20 01:39:52 CEST 2012 mikulas:
+
+	Support extended coordinates in xterm mouse reporting,
+	avoid previous limit 222 on maximum possible coordinate
+
+Tue May  8 23:13:55 MET 2012 mikulas:
+
+	Use enter to scale image
+
+Sun Apr 22 01:05:32 CEST 2012 mikulas:
+
+	PMshell driver was hacked to support also Win32 api
+
+Wed Apr 18 22:43:37 MET 2012 mikulas:
+
+	HTTPS proxy
+
+=== RELEASE 2.6 ===
+
+Sat Apr  7 03:54:41 CEST 2012 mikulas:
+
+	Fixed reads and writes out of memory in the xbm decoder
+	It may have security implications
+
+Mon Apr  2 05:34:15 CEST 2012 mikulas:
+
+	Fixed character set in the window title in X11
+
+Fri Mar 30 05:10:32 CEST 2012 mikulas:
+
+	Check EINTR after each syscall to work around non-working SA_RESTART
+	on some old Unices
+
+Wed Mar 28 22:11:23 CEST 2012 mikulas:
+
+	Fixed access out of allocated memory in the graphics renderer.
+	It may have security implications --- although just two characters
+	('-' and 0) were written to the unallocated area.
+
+Tue Mar 27 21:49:38 CEST 2012 mikulas:
+
+	Fixed an infinite loop in usemap when invalid html tag was processed
+
+Sun Mar 25 04:46:43 CEST 2012 mikulas:
+
+	Fixed a crash if the user runs links with pipe on stdin
+
+Sun Mar 25 02:42:11 MET 2012 mikulas:
+
+	Fixed inefficiency when moving or dragging mouse over big documents
+
+Sat Mar 24 01:26:05 CET 2012 mikulas:
+
+	Fixed inefficiency when displaying documents with long lines
+
+Wed Mar  7 23:02:27 CET 2012 mikulas:
+
+	Fix copy and paste of Unicode characters to/from Xwindow
+	clipboard
+
+Tue Feb 28 21:04:51 CET 2012 mikulas:
+
+	Fixed visual glitches in the select box in text-mode UTF-8
+
+Sun Feb 26 18:31:17 MET 2012 mikulas:
+
+	Use key ' to move forward
+
+Thu Feb 23 23:13:35 CET 2012 mikulas:
+
+	Fixed access out of memory when pasting too long string from
+	a clipboard
+
+Thu Feb 23 00:52:09 CET 2012 mikulas:
+
+	The NSS encryption library can cause browser lockup. Add a warning.
+	The user should use OpenSSL instead of NSS.
+
+Wed Feb 22 23:11:45 CET 2012 mikulas:
+
+	Fix for big endian Xserver
+
+Tue Feb 21 03:03:33 MET 2012 mikulas:
+
+	Restrict textarea and input field width to screen size minus margins
+
+Tue Feb 21 00:29:09 CET 2012 mikulas:
+
+	Fixed saving formatted document when UTF-8 is used
+
+Sun Feb 19 22:24:20 MET 2012 mikulas:
+
+	Fixed a crash if the user selected "Frame at full-screen" in the menu
+	and there was no page displayed in the current frame
+
+Mon Feb 13 19:35:07 MET 2012 mikulas:
+
+	Reload bookmarks if some other Links instance changes them
+
+Mon Feb 13 18:37:41 MET 2012 mikulas:
+
+	Fixed some messages about decompression errors when http authentication
+	and compression was used at the same time
+
+Sun Feb 12 18:32:26 MET 2012 mikulas:
+
+	Display filename and percentage in the download menu
+
+Sun Feb 12 17:50:01 MET 2012 mikulas:
+
+	Fixed divide-by-zero crash in the download code
+
+Sun Feb 12 15:22:12 MET 2012 mikulas:
+
+	Continue downloads to partially downloaded file
+
+Tue Feb  7 07:13:49 MET 2012 mikulas:
+
+	Add information about versions of libraries
+
+Tue Feb  7 00:39:28 cet 2012 mikulas:
+
+	Fixed visual glitches in the list editor
+
+Sun Feb  5 20:35:43 cet 2012 mikulas:
+
+	Fixed integer overflows if file cache has more than 2GB
+
+Mon Jan 23 21:54:19 MET 2012 mikulas:
+
+	Don't compact <br> tags inside <pre> (fixes line numbers in
+	source code viewer on github)
+
+Mon Jan 23 03:23:07 CET 2012 mikulas:
+
+	Support non-english keyboard in the Xwindow driver
+
+Sun Jan 15 01:42:59 cet 2012 mikulas:
+
+	When opening a new window, copy html options from the existing session
+
+Sat Jan 14 22:59:53 cet 2012 mikulas:
+
+	Support #! translation according to Google specification
+
+Thu Jan  5 02:43:42 CET 2012 mikulas:
+
+	Fixed reading of a freed memory if the user deletes a user program
+	while a query box with user programs is displayed
+
+Fri Dec 30 15:34:11 MET 2011 mikulas:
+
+	Allow the user to set local IP address
+
+Thu Dec 29 18:41:51 MET 2011 mikulas:
+
+	Allow the user to change colors
+
+=== RELEASE 2.5 ===
+
+Sat Dec 24 20:30:41 MET 2011 mikulas:
+
+	Use icon in pmshell
+
+Wed Dec 21 01:46:04 cet 2011 mikulas:
+
+	Do not guess compression type from extension if Content-Type is html
+
+Mon Dec 19 03:09:04 MET 2011 mikulas:
+
+	Recognise tgz extension
+
+Sun Dec 18 21:33:52 cet 2011 mikulas:
+
+	Fixed some visual glitches in the list editor, window is automatically
+	resized with the terminal
+
+	Fixed a crash if the user changes bookmarks location while some bookmark
+	editing dialog was displayed
+
+	Fixed a bug that bookmark location couldn't be changed on text-only
+	builds
+
+	Removed save bookmarks menu option, bookmarks are saved always when
+	closing bookmark window
+
+Fri Dec 16 02:12:37 MET 2011 mikulas:
+
+	Search for viewer application according to file extension if the server
+	returns content type application/x-<compression method>.
+
+Tue Dec  6 20:03:21 cet 2011 mikulas:
+
+	Implemented forward history
+
+Sun Dec  4 11:35:17 CET 2011 mikulas:
+
+	Fixed memory leaks or lockups if a connection between
+	two links instances was unexpectedly broken
+
+	Implemented a handshake in the communication protocol so that
+	different Links versions won't communicate with each other
+
+	Fixed a possible lockup if the user presses key and the master
+	Links instance disconnects at the same time
+
+Sun Dec  4 06:05:03 CEST 2011 mikulas:
+
+	Use AF_UNIX on Windows
+
+Tue Nov 29 02:44:44 CET 2011 mikulas:
+
+	Do not send spaces in Accept-Charset
+
+Mon Nov 28 03:03:26 CET 2011 mikulas:
+
+	Identify compier in User-Agent
+
+Sun Nov 27 02:28:35 cet 2011 mikulas:
+
+	Heap in high memory on OS/2
+
+Fri Nov 25 01:25:56 CET 2011 mikulas:
+
+	Support lzma compression
+
+=== RELEASE 2.4 ===
+
+Sat Nov 19 01:21:25 MET 2011 mikulas:
 
 	Do not translate '\' to '/' in HTTP requests
 
-Sat Nov 19 01:20:53 MET 2011 mikulas:
+Sat Nov 19 01:19:12 MET 2011 mikulas:
 
 	Do not test for existing strings when loading links history file
 	=> avoid quadratic-complexity on startup
 
-Sat Nov 19 01:20:39 MET 2011 mikulas:
+Sat Nov 19 01:18:59 MET 2011 mikulas:
 
 	Fixed a possible memory leak on Windows
 
-Mon Oct 17 03:51:20 MET DST 2011 mikulas:
+Wed Nov 16 17:59:49 MET 2011 mikulas:
 
-	Fixed a crash if http-equiv containes '&' entity names
+	Fixed a crash on systems that don't have strerror
 
-Sun Sep 25 18:41:28 MET 2011 mikulas:
+Fri Nov 11 23:22:25 CEST 2011 mikulas:
+
+	Fixed a crash in Windows console code
+
+Wed Oct 12 22:08:39 MET 2011 mikulas:
+
+	Fixed a possible crash if the user changes socks dns append string
+	while socks connection is in progress
+
+Sun Sep 25 18:40:57 MET 2011 mikulas:
 
 	Do not send '#' in the url when downloading
 
-Wed Aug 10 22:02:50 CEST 2011 mikulas:
+Sun Sep 18 16:57:38 CEST 2011 mikulas:
+
+	Fixed crashes with libpng-1.5
+
+Fri Sep 16 20:16:01 CEST 2011 mikulas:
+
+	Fixed bugs in the directfb driver
+
+Fri Sep 16 18:40:41 CEST 2011 mikulas:
+
+	Workaround for icc optimization bug on framebuffer
+	Don't clear the whole framebuffer, clear just an used area
+		(fixes problems with Nvidia framebuffer)
+
+Tue Sep 13 23:13:52 CEST 2011 mikulas:
+
+	Make it compile with OpenWatcom for Linux
+	Note: because of unimplemented "gethostbyname" function,
+	it requires installed "host" command to do name lookups
+
+Tue Sep 13 03:53:06 cet 2011 mikulas:
+
+	Try to free internal caches when out of memory happens
+
+Mon Sep 12 19:57:13 CEST 2011 mikulas:
+
+	Fixed a crash when cache is flushed while auth dialog is displayed
+
+Sun Sep 11 02:02:09 MET 2011 mikulas:
+
+	Reduced memory consumption
+	Don't reformat plain text if window size changes
+
+=== RELEASE 2.3 ===
+
+Wed Aug 10 20:10:45 CEST 2011 mikulas:
 
 	Fixed leaked process if the user pressed Ctrl-Z and logged out
 
-=== RELEASE 1.02 ===
-
-Tue Aug  9 14:48:35 MET DST 2011 mikulas:
-
-	Update BeOS port to support Haiku
-
-Tue Aug  9 00:43:45 MET 2011 mikulas:
+Tue Aug  9 00:08:58 CEST 2011 mikulas:
 
 	Fix downloads of files larger than 4G
 
-=== RELEASE 1.01 ===
+Mon Aug  8 22:02:19 MET 2011 mikulas:
+
+	Fix 32-bit mode in DirectFB
+	(reported by Filip Szczepanski <jazz2rulez@googlemail.com>)
+
+Mon Aug  8 20:51:08 MET 2011 mikulas:
+
+	Don't cache HTTP 303 response
+
+Mon Jun 27 02:49:50 MET DST 2011 mikulas:
+
+	Update BeOS and AtheOS port to support Haiku and Syllable
+
+Fri May 13 20:29:54 CEDT 2011 mikulas:
+
+	Fix Utf-8 with block cursor
+
+Fri May 13 20:29:23 CEDT 2011 mikulas:
+
+	Fix login on iacbox
+
+Fri Apr 22 17:17:17 MET 2011 Thomas Klausner <tk@giga.or.at>:
+
+	libpng-1.5 support
+
+=== RELEASE 2.3pre2 ===
+
+Sat Apr 16 20:19:07 CEST 2011 mikulas:
+
+	Utf-8 text terminal support
 
 Sat Mar 12 23:55:56 MET 2011 mikulas:
 
 	Fixed a bug with gpm, if gpm closed a handle on its own,
 	links would occasionaly close it again
 
-=== RELEASE 1.01pre1 ===
+Mon Aug  9 01:35:29 UTC 2010 mikulas:
 
-Sun May 17 19:03:43 cet 2009 mikulas:
+	Don't report terminal size in User-Agent
+
+Thu Aug  5 23:31:59 MET 2010 mikulas:
+
+	Scan for header tags even in document body
+
+Sat Jul 31 22:35:04 MET 2010 mikulas:
+
+	link rel=prefetch
+
+Sat Jul 31 22:24:06 MET 2010 mikulas:
+
+	Interpret style="display:none"
+
+Fri Jun 18 20:39:46 MET 2010 mikulas:
+
+	Fixed crash when unknown Content-Enconding is returned by the server
+
+Sat Apr 24 04:11:58 CEST 2010 mikulas:
+
+	Fix an occasional lockup with Ctrl-Z, fg and framebuffer
+
+=== RELEASE 2.3pre1 ===
+
+Sun Aug 16 06:17:03 MET 2009 mikulas:
+
+	Accept cookies for domains with two parts, such as xxxx.yy, where
+	"xxxx" has at least 4 chars. This likely won't be generic domain such
+	as "co.tw", so accepting the cookie is safe.
+
+Sun May 17 22:29:43 MET DST 2009 mikulas:
+
+	Support encryption with NSS (GPL fanatics don't like OpenSSL, grrr)
+
+Sun May 17 18:51:07 cet 2009 mikulas:
 
 	Ignore textarea that is not inside form (for Google)
 
-Tue Sep  9 23:13:52 MET 2008 mikulas:
+Sun Jan 18 19:27:56 CET 2009 mikulas:
+
+	Avoid quadratic complexity when parsing long forms
+
+Thu Jan  1 14:04:38 CET 2009 mikulas:
+
+	UTF-8 text mode terminal support
+
+Sun Sep 14 01:02:06 MET 2008 mikulas:
+
+	Decode '%' in downloaded file names
+
+Tue Sep  9 23:13:20 MET 2008 mikulas:
 
 	Do not add another '?' or '&' if already present at the end of form
 	submit URL
 
-Mon Aug  4 18:52:34 cet 2008 mikulas:
+Sun Aug 24 17:19:32 MET 2008 Christian Biere <christianbiere@gmx.de>:
+
+	magnet: URL support
+
+Wed Aug 20 23:03:10 cet 2008 mikulas:
+
+	More strict check for invalid GIF header
+	(catches some misgenerated images that reported too big size and
+	overflowed the memory allocator)
+
+Sun Aug 17 23:30:34 MET 2008 mikulas:
+
+	Check for too big images
+
+Wed Aug 13 00:24:41 CEST 2008 mikulas:
+
+	Fixed occassional drawing after VT switch on framebuffer
+
+Mon Aug  4 18:53:52 cet 2008 mikulas:
 
 	Don't submit disabled form entries (this is compatible with
 	Mozilla/MSIE; Netscape and Lynx do submit them)
 
-Sun Aug  3 02:37:56 cet 2008 mikulas:
+Sun Aug  3 02:40:58 MET 2008 mikulas:
 
 	Handle restart with servers that send 206 but don't send Content-Range
 
-Thu Jun 12 03:38:04 cet 2008 mikulas:
+=== RELEASE 2.2 ===
+
+Mon Jul 28 14:39:24 CEST 2008 mab:
+
+	Swiss German (Zueriduetsch) translation
+
+Fri Jul 18 23:35:44 MET 2008 mikulas:
+
+	Fix scrollbars being offset by few pixels when "scrolling" attribute
+	was used
+
+Fri Jul 11 20:40:38 MET 2008 mikulas:
+
+	Drop .gz or .bz2 extension when viewing files downloaded from ftp (and
+	decompressing them)
+
+=== RELEASE 2.1 ===
+
+Wed Jul  2 03:48:23 MET DST 2008 mikulas:
+
+	Turn memory debugging off by default
+
+Tue Jun 24 06:08:04 MET 2008 mikulas:
+
+	Security bug fixed: when "only proxies" is selected, don't pass URLs
+	to external programs
+
+=== RELEASE 2.1pre37 ===
+
+Sun Jun 22 17:07:20 cet 2008 mikulas:
+
+	-dump and -source don't lockup on authentication failure
+
+Sat Jun 21 19:58:53 MET 2008 mikulas
+
+	Accept broken numbers in HTTP code
+
+Sat Jun 21 18:00:54 cet 2008 mikulas:
+
+	Allow '+' in command-line URLs
+
+Thu Jun 12 03:34:53 cet 2008 mikulas:
 
 	Erase clipboard on OS/2 before copying to it - this prevents bugs
 	when copying to/from Mozilla
 
-Thu Jun 12 03:32:25 cet 2008 mikulas:
-
-	Fixed some quirks on 64-bit big endian systems
-
-Mon Jun  9 02:35:03 MET 2008 mikulas:
+Mon Jun  9 02:34:24 MET 2008 mikulas:
 
 	Process &#10; and &#9; in form entry "value" attribute
 
-Mon May 12 23:31:50 MET 2008 mikulas:
+Tue Jun  3 00:22:49 CEST 2008 mikulas:
+
+	Fixed various display glitches with 64-bit big endian systems
+
+Sun May 18 21:47:46 CEST 2008 mikulas:
+
+	Fixed display quirks on Sparc framebuffer console
+	Fixed some quirks on 64-bit big endian systems
+
+=== RELEASE 2.1pre36 ===
+
+Tue May 13 04:04:47 MET 2008 mikulas:
+
+	Fixed crash that was introduced with Sun May 4 20:13:21 MET 2008 fix
+
+Mon May 12 23:26:51 MET 2008 mikulas:
 
 	Blacklist another broken HTTP/1.1 server - Apache Sausalito
 
-Thu Mar 20 22:53:57 MET 2008 mikulas:
+Fri May  9 04:06:47 MET 2008 mikulas:
+
+	Take downloaded file name from Content-Type; name argument, if it exists
+	Also, get encoding information from Content-Type/Content-Disposition
+	filename
+
+=== RELEASE 2.1pre35 ===
+
+Mon May  5 20:06:19 MET 2008 mikulas:
+
+	The fix from Sun May 4 20:13:21 MET 2008 broke loading of animated gifs
+
+=== RELEASE 2.1pre34 ===
+
+Sun May  4 21:18:15 MET 2008 mikulas:
+
+	Allow displaying large images in xwindow (that do not fit into xserver
+	memory)
+
+Sun May  4 20:13:21 MET 2008 mikulas:
+
+	Fixed image was sometimes not redrawn, when connection was interrupted
+	in the middle and resumed
+
+Sun May  4 17:52:29 MET 2008 Ben Secrest <blsecres@gmail.com>:
+
+	Don't change Xwindow class
+
+Wed Apr 16 03:10:02 cet 2008 Didier Mequignon <didiermequignon@wanadoo.fr>:
+
+	Updated French translation
+
+Wed Mar 26 20:50:32 MET 2008 mikulas:
+
+	Fixed crash in text mode with small window height and bookmarks
+
+Sat Mar 22 22:01:15 MET 2008 mikulas:
+
+	Accept </> as an empty tag
+
+Thu Mar 20 22:47:09 CET 2008 mikulas:
 
 	Accept alternate description attributes for image buttons
 
-Thu Mar 20 05:13:21 MET 2008 mikulas:
+Thu Mar 20 04:36:45 MET 2008 mikulas:
 
 	Fixed the bug that when displaying source, some html entities were
 	errorneously translated
 
-Thu Mar 20 05:13:04 MET 2008 mikulas:
+Thu Mar 20 04:30:52 MET 2008 mikulas:
 
 	Added fallback for &#8209; entity
 
-=== RELEASE 1.00 ===
+Thu Mar 13 22:43:48 CET 2008 mikulas:
 
-Fri Dec 28 05:29:50 MET 2007 mikulas:
+	Allow multiple WWW-Authenticate headers
+
+=== RELEASE 2.1pre33 ===
+
+Thu Jan 31 21:11:40 MET 2008 mikulas:
+
+	Fixed memory leak when there was an error in decompression
+
+Thu Dec 27 23:37:03 MET 2007 mikulas:
 
 	Support few more keycodes on ANSI terminal (PAGE UP, PAGE DOWN and few
 	F* keys)
 
-Wed Dec 26 03:42:29 cet 2007 mikulas:
+Wed Dec 26 03:43:35 cet 2007 mikulas:
 
 	Disable smb:// URLs on OS/2, fork+threads can cause crashes in EMX
 	Besides, there's no usable smb client program anyway
 
-=== RELEASE 1.00pre23 ===
-
-Mon Dec 24 22:12:00 MET 2007 mikulas (sponsored by Dondor Ltd.):
+Tue Dec 25 01:44:28 MET 2007 mikulas (sponsored by Dondor Ltd.):
 
 	A .nsi file to make Windows installer with Nullsoft scriptable install
 
-Mon Dec 24 01:44:52 MET 2007 mikulas:
+Mon Dec 24 01:44:11 MET 2007 mikulas:
 
 	Fixed a bug that strings with spaces could not be passed from command
 	line
 
-Thu Dec 20 03:30:57 cet 2007 mikulas (sponsored by Dondor Ltd.):
+Mon Dec 24 00:43:57 MET 2007 mikulas:
+
+	Socks 4A support (so that Links can be used with tor without
+	intermediate proxy)
+
+Thu Dec 20 05:40:22 cet 2007 mikulas:
+
+	Thre previous Windows fix broke opening new windows on OS/2
+
+=== RELEASE 2.1pre32 ===
+
+Thu Dec 13 04:44:01 MET 2007 mikulas:
+
+	Do not display links to alternate stylesheets
+
+Tue Dec 11 06:37:56 MET 2007 mikulas:
+
+	Use Content-Disposition as a suggestion for downloaded file name
+
+Sun Dec  9 04:52:37 MET 2007 mikulas:
+
+	Fixed write to freed memory resulting in misbehavior of radio buttons
+	and a possible crash
+
+Wed Dec  5 23:26:55 MET 2007 mikulas:
 
 	Make it run without Cygwin environment (only with Cygwin DLLs)
 	Workaround for flaws in Cygwin Unix emulation:
@@ -125,66 +1394,104 @@ Thu Dec 20 03:30:57 cet 2007 mikulas (sponsored by Dondor Ltd.):
 		exec("command.com") crashes Windows 98 when some sockets are
 			open
 
-Thu Dec 13 04:43:47 MET 2007 mikulas:
+Wed Dec  5 18:05:00 MET 2007 mikulas:
 
-	Do not display links to alternate stylesheets
+	Do not search for compressed-file extension (.gz, .bz2) in URLs
+	containing '?', '&' or ';' --- they are likely scripts and they should
+	provide information about compression in the header.
 
-=== RELEASE 1.00pre22 ===
-
-Sun Dec  9 05:20:14 MET 2007 mikulas:
-
-	Fixed write to freed memory resulting in misbehavior of radio buttons
-	and a possible crash
-
-Tue Dec  4 04:09:48 MET 2007 mikulas:
+Tue Dec  4 04:09:51 MET 2007 mikulas:
 
 	When the document was truncated to zero size on reload and no data were
 	received, links didn't invalidate formatted document cache
 
-Wed Nov  7 00:20:36 MET 2007 mikulas:
+Wed Nov  7 00:20:12 MET 2007 mikulas:
 
 	Accept capital 'X' as a hex number mark in html entities
 
-Fri Nov  2 19:54:09 MET 2007 mikulas:
+Fri Nov  2 19:53:01 MET 2007 mikulas:
 
 	Do not print links to stylesheet to the document
 
-Fri Nov  2 19:53:53 MET 2007 mikulas:
+Fri Nov  2 19:52:22 MET 2007 mikulas:
 
 	Slightly improve parsing of ftp --- when the line contains "<DIR>", we
 	can assume that it is a directory
 
-Tue Oct 30 21:21:48 cet 2007 mikulas:
+Tue Oct 30 21:22:27 cet 2007 mikulas:
 
 	Previous release didn't compile on OS/2 due to missing SIGCONT
 
-=== RELEASE 1.00pre21 ===
+=== RELEASE 2.1pre31 ===
 
-Sat Oct 27 04:15:24 MET DST 2007 mikulas:
+Sat Oct 27 02:52:07 CEST 2007 mikulas:
 
 	Some newer Linuxes unfortunatelly do not send SIGCONT when running
 	process is brougt to foreground with 'fg' command. So implement 0.5s
 	polling to test if we're on foreground.
 
-Mon Oct 22 18:35:57 MET 2007 mikulas:
+Wed Oct 24 03:41:19 MET 2007 mikulas:
+
+	Do not request compression for files with .Z, .gz or .bz2 suffix
+	--- some servers will compress them again
+
+Wed Oct 24 03:16:43 MET 2007 mikulas:
+
+	Support HTTP/0.9 (without header)
+
+Mon Oct 22 18:35:16 MET 2007 mikulas:
 
 	In case of non-restartable connection, proceed with the connection
 	even if the server is on blacklist
 
-Mon Sep 17 04:03:23 MET 2007 mikulas:
+Mon Oct 22 02:00:13 MET 2007 mikulas:
+
+	An option to disallow non-proxy connections (for anonymization via tor
+	or similar services)
+
+Sat Oct 20 22:08:02 MET 2007 mikulas:
+
+	Turn off compression if the server closes the connection prematurely
+	Some servers errorneously send the size of uncompressed data
+
+Sat Oct 13 18:19:45 MET 2007 mikulas:
+
+	An option to disable compression. Disable compression automatically for
+	a given server if links receives errorneous compressed data
+
+Mon Sep 17 03:59:33 CEST 2007 mikulas:
 
 	Break ansi aliasing on ICC 10 with -ipo
-	Instruction call was not enough to break it
+	Empty function call was not enough to break it
 
-Fri Sep  7 00:02:55 MET 2007 mikulas
+Fri Sep  7 00:00:29 MET 2007 mikulas:
 
 	When the connection dies after the last received byte, do not send
 	"Range:" header in retry request --- servers don't like "Range" pointing
 	after the last byte
 
-Sat Jul  7 05:10:06 cet 2007 mikulas:
+=== RELEASE 2.1pre30 ===
 
-	On OS/2, do not prealloc files with relative pathname
+Mon Aug  6 04:01:05 MET 2007 mikulas:
+
+	Fixed security bug in pre29 (not in any previous versions):
+	special characters in URL could be passed to a shell when spawning
+	user viewer
+
+Sat Jul 28 02:28:15 MET 2007 mikulas:
+
+	Fixed needlessly large selection boxes in graphics mode
+
+Mon Jul 16 02:41:18 MET 2007 mikulas:
+
+	Release mouse when spawning OS shell or user viewers
+
+=== RELEASE 2.1pre29 ===
+
+Sun Jul  8 01:05:08 MET DST 2007 mikulas:
+
+	Fixed bad redraw of X window when Expose event come for some area while
+	scrolling different area
 
 Sat Jul  7 04:06:52 cet 2007 mikulas:
 
@@ -192,30 +1499,99 @@ Sat Jul  7 04:06:52 cet 2007 mikulas:
 
 Sat Jul  7 03:50:27 cet 2007 mikulas:
 
-	Use _getcwd2 on OS/2 --- it returns path including the driver letter
+	Use _getcwd2 on OS/2 --- it returns path including the drive letter
 
-Wed May 23 00:48:06 MET 2007 mikulas:
+Sat Jul  7 02:19:35 cet 2007 mikulas:
+
+	Set extension of downloaded or viewed files according to content-type,
+	not according to URL extension
+
+Sun May 27 17:15:00 MET 2007 mikulas:
+
+	Fixed bad displaying of jpeg images on machines where memcpy operates in
+	different order
+
+Sun May 27 14:06:41 MET DST 2007 mikulas:
+
+	Fixed crash on invalid jpeg files (found by Michael Scherer
+	<misc@zarb.org> with http://fusil.hachoir.org/)
+
+Wed May 23 00:41:53 MET 2007 mikulas:
 
 	Do not send If-Modified-Since or Range in HTTP request if cached page
 	has an error code
 
-Mon Apr 30 03:48:59 cet 2007 mikulas:
+Tue May 15 23:15:21 MET 2007 mikulas:
+
+	Fixed some quirks with download file handling --- when each terminal had
+	different CWD, downloaded files were not deleted
+
+	When getting EFBIG error (file size exceeded), continue download in
+	another file
+
+Fri May 11 22:39:02 MET 2007 mikulas:
+
+	A possibility to pass HTTP or FTP URLs directly to external programs
+	(programs such as mpg321, ogg123, mplayer can play directly from the
+	network)
+
+Thu May 10 23:07:47 cet 2007 mikulas:
+
+	Fixed inability to display images compressed on the fly by the server
+	(it is pointless to try to compress already compressed images, but some
+	servers do it anyway)
+
+Wed May  9 00:32:17 CEST 2007 mikulas:
+
+	Escape Referer: correctly
+
+Wed May  9 00:32:09 CEST 2007 mikulas:
+
+	Fixed bug that it couldn't be compiled without optimization without
+	javascript
+
+Mon Apr 30 03:48:40 cet 2007 mikulas:
 
 	Blacklist FORPSI server --- do not send Range: to it
 
-=== RELEASE 1.00pre20 ===
+Mon Apr 16 01:49:07 MET DST 2007 mikulas:
 
-Sun Apr  8 21:02:15 CEST 2007 mikulas
+	Javascript was removed. The reason is that it is very buggy, Martin
+	Pergel doesn't have time to develop it and code is so messy that no one
+	else can understand it.
+
+	If you use links for special purposes (embedded devices, etc.), you can
+	bring javascript back by copying javascript files from previous release,
+	removing "dnl javascript" lines from configure.in, adding *.c and *.h
+	files to Makefile.am and re-running automake and autoconf.
+
+	Javascript hooks from main code were not removed --- they just won't be
+	maintained.
+
+=== RELEASE 2.1pre28 ===
+
+Wed Apr 11 01:39:36 cet 2007 mikulas:
+
+	Fixed a bug in decompression and javascript document.write introduced in
+	previous release (compressed data were displayed after document.write)
+
+	(BTW. because the javascript interpreter has bugs, Martin Pergel has not
+	time for it and the code is so messy that it couldn't be understand by
+	anyone else, javascript will likely be removed in next release)
+
+=== RELEASE 2.1pre27 ===
+
+Sat Apr  7 02:43:28 CEST 2007 mikulas:
 
 	Terminal resize, window title and clipboard support for Cygwin
 	Clipboard supports non-ascii characters badly, it is a limitation in
 	Cygwin
 
-Wed Apr  4 23:20:10 MET 2007 Carles Pina i Estany <carles@pina.cat>:
+Wed Apr  4 23:19:00 MET 2007 Carles Pina i Estany <carles@pina.cat>:
 
 	Add more top-level domains
 
-Wed Apr  4 14:32:47 MET DST 2007 mikulas:
+Sat Mar 31 03:02:40 CEST 2007 student:
 
 	win32.c file removed because in each new version of windows it doesn't
 	work. Don't even try to fix it unless you have computers with Windows
@@ -228,319 +1604,681 @@ Wed Apr  4 14:32:47 MET DST 2007 mikulas:
 	to fix it in links. Press twice Alt-Enter if links doesn't notify window
 	size change
 
-Tue Feb  6 00:27:00 MET 2007 mikulas:
+Sun Mar 25 22:26:41 MET 2007 mikulas:
 
-	Allow quotation marks in Refrfesh URL parameter --- fixes Google Picasa
+	Fixed bad behaviour of scrollbars on very large documents due to integer
+	overflow
 
-=== RELEASE 1.00pre19 ===
+Wed Mar 21 22:15:25 MET 2007 mikulas:
 
-Tue Nov 28 23:15:20 MET 2006 mikulas:
+	Support for zlib, gzip and bzip2 files
+
+Wed Mar 21 04:37:42 MET 2007 mikulas:
+
+	Limit image scaling to prevent allocation overflow
+
+Tue Feb  6 00:23:43 MET 2007 mikulas:
+
+	Allow quotation marks in Refresh URL parameter --- fixes Google Picasa
+
+=== RELEASE 2.1pre26 ===
+
+Tue Nov 28 23:13:38 MET 2006 mikulas:
 
 	Fixed severe security bug: '"' and ';' in smb:// url could be used for
 	remote command execution.
 
-Wed Nov 22 22:24:38 MET 2006 Jakub Bogusz <qboosh@pld-linux.org>:
+=== RELEASE 2.1pre25 ===
 
-	Updated Polish translation
+Wed Nov 22 23:55:21 MET 2006 mikulas:
 
-=== RELEASE 1.00pre18 ===
+	DirectFB no longer causes internal error on unsupported color depth.
+	Normal error reporting and trying other drivers is be done.
 
-Mon Nov  6 02:12:59 cet 2006 mikulas:
+Wed Nov 22 22:26:58 MET 2006 Jakub Bogusz <qboosh@pld-linux.org>:
+
+	Updated Polish Translation
+
+Sun Nov 12 17:23:46 MET 2006 mikulas:
+
+	Fixed memory leak in http authentication
+
+=== RELEASE 2.1pre24 ===
+
+Mon Nov  6 02:13:48 cet 2006 mikulas:
 
 	Fixed incorrect page displayed when search string ended with space and
 	the word was last on page
 
-Fri Oct 27 17:15:15 cet 2006 mikulas:
+Thu Oct 26 16:10:01 MET 2006 mikulas:
 
 	More strict parsing of ftp list, fixes ftp.su.se
 
-Sun Oct 15 22:55:40 MET DST 2006 mikulas:
+Sun Oct 15 22:55:28 MET DST 2006 mikulas:
 
 	Allow cookie path to point to file, not only directory
 
-Wed Oct 11 00:17:54 MET DST 2006 mikulas:
+Wed Oct 11 00:17:27 MET DST 2006 mikulas:
 
 	Fixed quirk with displaying of links in text mode
 
-Mon Sep 11 02:41:05 MET DST 2006 mikulas:
+Mon Oct  9 23:33:03 MET 2006 Jakub Bogusz <qboosh@pld-linux.org>:
+
+	Updated Polish translation
+
+Mon Oct  9 21:55:24 MET 2006 Jindrich Makovicka <makovick@gmail.com>:
+
+	Fixed memory corruption when redirecting URLs with user:password
+
+Mon Sep 11 02:43:32 MET DST 2006 mikulas:
 
 	Test for socklen_t
 	Work without PF_INET (for Minix 3)
 	Cleaned up use of AF_ and PF_ constants
 
-=== RELEASE 1.00pre17 ===
+Sat Sep  9 00:05:16 MET 2006 mikulas:
 
-Fri Aug 25 00:51:50 MET 2006 mikulas:
+	Fixed double-to-string conversion for config files
+
+Fri Aug 25 00:48:05 MET 2006 mikulas:
 
 	Parsing ftp directories starts to be difficult because fixing one bug
 	introduces other. Previous fix sometimes mistook size for year :-/
 
-Sun Aug 20 05:07:20 cet 2006 mikulas:
+Sun Aug 20 05:06:57 cet 2006 mikulas:
 
 	Correctly translate character set of "label" attribute
 
-Mon Jul 31 00:33:13 MET 2006 mikulas:
+Thu Aug 17 19:57:34 MET 2006 mikulas:
+
+	Fixed incremental loading of XBM images
+
+Mon Aug  7 05:11:47 CEST 2006 Matthew Fischer <futhark@mchsi.com>:
+
+	Fixed Japanese fonts
+
+Mon Jul 31 00:32:58 MET 2006 mikulas:
 
 	More cygwin fixes
 
-Sun Jul 16 16:36:26 cet 2006 mikulas:
+=== RELEASE 2.1pre23 ===
+
+Thu Jul 27 04:53:01 CEST 2006 mikulas:
+
+	Fixed pagedown and search bugs in braille terminal introduced in
+	links-2.1pre20
+
+Sun Jul 16 16:35:54 cet 2006 mikulas:
 
 	Link to "" redirects to current file rather than current directory
 		(fixes some forms)
 
-Sun Jul 16 00:07:54 cet 2006 mikulas:
+Sun Jul 16 00:08:30 cet 2006 mikulas:
 
 	Better ftp directory parsing (process correctly file names starting with
 		year)
 
-Sat Jul 15 16:37:52 MET 2006 mikulas:
+Sat Jul 15 16:37:36 MET 2006 mikulas:
 
 	Bigger default textarea
 
-Tue Jun 27 23:50:11 cet 2006 mikulas:
+Mon Jul 10 22:53:09 MET DST 2006 mikulas:
+
+	Use pkg-config to search for libpng and pcre
+
+Tue Jun 27 23:50:43 cet 2006 mikulas:
 
 	Fixed display of multiple consecutive spaces when searching
 
-Sun Jun 18 16:12:52 MET 2006 mikulas:
+Tue Jun 27 23:14:35 cet 2006 mikulas:
+
+	View &nbsp; as space when searching
+
+Sun Jun 18 16:11:57 MET 2006 mikulas:
 
 	Command "kill background connections" aborts also keepalive connections
 
-Sat Jun 17 21:08:44 cet 2006 mikulas:
+Sat Jun 17 21:43:01 cet 2006 mikulas:
+
+	Removed SDL support until someone fixes it.
+	Remaining bugs:
+		palette not installed with 256-color svgalib support
+		drawing doesn't synchronize with softcursor (seen on svgalib)
+		stupid keyboard handling (SDL has the ability to query
+			operating system keymap and translate keys to unicode
+			but this driver didn't use it)
+		doesn't support virtual devices with Alt-1 ... Alt-0, like
+			svgalib and framebuffer
+		reportedly crashes with sdl-1.2.10
+	If you want SDL support continued, take file sdl.c from previous
+	version of links, fix the above issues and resubmit it.
+
+Sat Jun 17 21:08:04 cet 2006 mikulas:
 
 	Fixed exponential memory consumption with table cell colspan/rowspan
 
-Sat Jun 10 23:52:59 cet 2006 mikulas:
+Sat Jun 17 20:30:49 cet 2006 mikulas:
+
+	Do not try to interpret <script src=...> if server returns HTTP error
+
+Sat Jun 10 23:52:00 cet 2006 mikulas:
 
 	Decode %AB sequences in position tags
 
-Fri Jun  9 18:33:23 cet 2006 mikulas:
+Fri Jun  9 18:32:55 cet 2006 mikulas:
 
 	Accept broken meta refresh tags (fixes www.seznam.cz)
 
-Sat Jun  3 03:16:55 cet 2006 mikulas:
+Fri Jun  9 02:14:42 MET 2006 mikulas:
+
+	Shift-Q exits without question
+
+Sat Jun  3 21:47:19 cet 2006 mikulas:
+
+	Fixed a bug that <body onload=...> was not processed when there were no
+	other scripts on that page
+
+Sat Jun  3 19:31:35 CEST 2006 mikulas:
+
+	Fixed crash in javascript regular expressions
+
+Wed May 31 18:25:32 CEST 2006 mikulas
 
 	Fixed mouse in Cygwin
 	Allowed to run in xterm or rxvt in Cygwin
 
-=== RELEASE 1.00pre16 ===
+=== RELEASE 2.1pre22 ===
 
-Sun Apr  2 19:38:12 MET 2006 mikulas:
+Wed May 24 20:03:59 MET DST 2006 mikulas:
+
+	sponsored by Alex Poylisher <sher@komkon.org>
+	Use 8-bit gamma correction on machines with slow FPU (or with FPU
+	emulation) --- this significantly reduces startup time
+
+Fri May 12 04:23:58 MET DST 2006 Lech Lorens <lech_lorens@interia.pl>:
+
+	Optional scrollbars in frames
+
+Sat Apr 29 18:06:05 CEST 2006 clock:
+
+	Implemented porn mode (bare image autoscaling aka fullscreen).
+
+Sat Apr 29 12:45:07 CEST 2006 clock:
+
+	Fixed ignorance of aspect ratio for images where only one dimension
+	is specified.
+
+Thu Apr 27 03:08:27 MET 2006 mikulas:
+
+	Fixed crash when deleting item at the top of the window in bookmarks
+	or associations or extensions
+
+Thu Apr 20 18:27:07 MET 2006 mikulas:
+
+	Ignore space at the end of url
+
+Wed Apr  5 04:28:09 cet 2006 mikulas:
+
+	Fixed memory leak on image with no src attribute and usemap attribute
+
+Tue Apr  4 00:37:49 MET 2006 mikulas:
+
+	Support 4th and 6th mouse button on svgalib
+
+=== RELEASE 2.1pre21 ===
+
+Sun Apr  2 19:37:50 MET 2006 mikulas:
 
 	Fixed some quirks when URL contained multiple '#' characters
-	Allow '#' in ftp password
 
-Sun Apr  2 19:09:20 MET 2006 mikulas:
+Sun Apr  2 19:08:45 MET 2006 mikulas:
 
 	Better parsing of FTP directories (fixes Quick 'n Easy FTP Server)
 
-Thu Mar 30 20:11:25 cet 2006 mikulas:
+Sun Apr  2 17:10:30 CEST 2006 mikulas:
+
+	Fixed javascript memory leak on www.ebay.com
+	The bug was due to namespace containing reference to itself
+	PerM is really a programmer pig. After writing namespace allocation and
+	initialization 39 times, he didn't even consider making it function :-(
+
+Thu Mar 30 20:36:39 cet 2006 mikulas:
 
 	Location: field in HTTP reply is now allowed to contain position
 	specification '#'
 
-Thu Mar 23 15:26:23 MET 2006 mikulas:
+Thu Mar 23 15:20:22 CET 2006 mikulas:
 
 	Do not send Accept-Language to a buggy Netscape-Enterprise server
 	Do not send "en" language twice in Accept-Language
 
-Thu Mar 23 15:26:15 MET 2006 mikulas:
+Mon Mar 20 01:14:58 MET 2006 mikulas:
 
 	Changes license to allow linking with OpenSSL
 
-Sun Mar 19 03:07:56 MET 2006 mikulas:
+Sun Mar 19 03:07:32 MET 2006 mikulas:
 
 	Support &#10;, &#13; and &#9;
 
-Sat Mar 11 04:07:42 MET 2006 mikulas:
+Sat Mar 11 04:08:15 MET 2006 mikulas:
 
 	An option to turn off IP type-of-service (some misconfigured firewalls
 	drop packets with it)
 
-Mon Mar  6 17:30:53 MET 2006 mikulas:
+Mon Mar  6 17:27:27 MET 2006 mikulas:
 
 	When clicking on images with keyboard, submit point (1,1), not (0,0)
 	(work around another bug on mail.centrum.cz)
 	Submit value attribute with image
 
-Sun Mar  5 20:48:08 MET 2006 mikulas:
+Sun Mar  5 21:07:38 MET 2006 mikulas:
+
+	Ignore percentual height specification in html (links took it relatively
+	to the height of the screen while other browsers interpreted it
+	relatively to the height of a table cell)
+
+Sun Mar  5 20:47:23 MET 2006 mikulas:
 
 	Make multipart boundary format compatible with Netscape (unfortunatelly
 	there are buggy servers that depend on it --- for example
 	mail.centrum.cz)
 	Do not send Content-Type when there's no file to upload
 
-Mon Feb 27 05:23:34 cet 2006 mikulas:
+Wed Mar  1 01:01:36 MET 2006 Andrei Paskevich <andrei@capet.iut-fbleau.fr>:
+
+	Fix tokenizer of javascript when it encounters 0xff character
+
+Tue Feb 28 01:46:18 cet 2006 mikulas:
+
+	OS/2 Pmshell gui: Ignore mouse-move events if mouse position stays the
+	same. Mozilla is somehow generating these events when its javascript
+	runs and it disrupts links
+
+Mon Feb 27 05:24:28 cet 2006 mikulas:
 
 	Make textarea wrapping default (compatible with Mozilla, Netscape has
 	default no wrapping)
 
-Sat Feb 11 02:35:25 cet 2006 mikulas:
+Sat Feb 11 02:26:24 cet 2006 mikulas:
 
 	More bug-compatible parsing of superfluous quotation marks
 
-Mon Feb  6 21:27:13 MET 2006 mikulas:
+Sun Feb  5 21:11:49 MET 2006 mikulas:
 
-	Fixed compile error because of strtonum name clash on current OpenBSD
+	Fixed some quirks when searching in associations or extensions ---
+	search sometimes didn't find anything (depending on random memory)
+	and window was not properly redrawn
 
-Sun Feb  5 18:22:28 MET 2006 mikulas:
+Sun Feb  5 20:15:38 MET 2006 mikulas:
+
+	Fixed crash when bookmarks window was opened after changing bookmarks
+	charset
+
+Sun Feb  5 18:54:52 MET 2006 mikulas:
 
 	Case-insensitive search of all characters
 
-Mon Jan 23 18:26:24 MET 2006 mikulas:
+Wed Jan 25 16:26:35 MET 2006 mikulas:
+
+	Fixed some quirks in graphics user interface:
+		selection didn't work when javascript was not compiled in
+		right mouse button didn't display menu when text was selected
+		serch text temporarily disappeared when user clicked on it
+		middle button didn't click on scrollbars
+
+Wed Jan 25 05:18:08 CET 2006 mikulas:
+
+	Updated manpage
+
+Mon Jan 23 18:22:41 MET 2006 mikulas:
 
 	Fixed textarea content corruption due to overlapping areas in memcpy
 
-Thu Jan 19 18:13:13 MET 2006 mikulas:
+Thu Jan 19 18:13:52 MET 2006 mikulas:
 
 	Disallow access to proxy:// urls from user interface
 	(they are internal-only)
 
-Sun Jan 15 05:51:49 MET 2006 mikulas:
+Thu Jan 19 17:57:13 MET 2006 mikulas:
 
-	Preserve config and history in case of IO error (including full disk)
-	(bookmarks were already handled correcly)
+	Accept urls http://host.domain#position
 
-Thu Dec 22 15:15:07 MET 2005 mikulas:
+Sun Jan 15 16:29:19 MET 2006 mikulas:
+
+	Find X-window in X11R7 directory
+
+Sun Jan 15 05:51:13 MET 2006 mikulas:
+
+	Preserve config, history and bookmarks in case of IO error (including
+	full disk)
+
+Fri Dec 30 17:31:26 MET 2005 mikulas:
+
+	Guess content-type by extension on misconfigured servers that
+	return text/plain or application/octet-stream
+
+Thu Dec 29 23:35:32 MET 2005 Jakub Bogusz <qboosh@pld-linux.org>:
+
+	Updated Polish translation
+
+Thu Dec 22 15:14:00 MET 2005 mikulas:
 
 	Discard mouse events while user viewer is in foreground (but due to some
 	quirks in gpm/svgalib, it may still produce spurious mouse-click events)
 
-=== RELEASE 1.00pre15 ===
+Thu Dec 22 13:36:38 MET 2005 mikulas:
 
-Wed Dec  7 00:42:50 MET 2005 mikulas:
+	Fixed bug with downloads and cyclic redirects (now, as when loading
+	real documents, it turns off cache and displays error if it doesn't
+	help)
+
+=== RELEASE 2.1pre20 ===
+
+Wed Dec  7 21:21:18 MET 2005 E. Rosten <er258@eng.cam.ac.uk>:
+
+	Blocklist blocks all accesses, not only images
+
+Wed Dec  7 00:41:09 MET 2005 mikulas:
 
 	Fixed proper position after go-back if the file was not in cache
 	Fixed incorrect initial position on some pages with long tables during
 		viewing while loading
+	Fixed some quirks with Braille terminal and jumping by words
 	-dump -html-numbered-links 1 prints links' locations
 
-Tue Nov 29 00:30:12 MET 2005 mikulas:
+Tue Nov 29 00:36:24 MET 2005 mikulas:
 
 	Do not load too big files on background (maximum size is cache size / 4)
 
-Mon Nov 28 01:49:21 MET 2005 mikulas:
+Mon Nov 28 01:49:54 MET 2005 mikulas:
 
 	Restore terminal attributes on fatal errors
 
-Sun Nov 27 23:01:39 MET 2005 mikulas:
+Sun Nov 27 22:35:25 CET 2005 mikulas:
 
 	Allowed download of files larger than 2G
 
-Sat Nov 19 18:39:51 MET 2005 mikulas:
+Thu Nov 24 18:17:38 MET 2005 Konstantin <k6@pisem.net>:
+
+	Regular expressions for javascript
+
+Sat Nov 19 18:57:04 MET 2005 mikulas:
 
 	Allow cookies with "secure" parameter
 	Cookies without path act as if path was "/" instead of current directory
 
-Mon Oct 24 16:36:01 MET DST 2005 mikulas:
+Sat Nov 12 23:34:13 cet 2005 mikulas:
+
+	Remove username and password from referer
+	An option to send real referer only to the same server
+
+Sat Nov 12 20:37:06 MET 2005 mikulas:
+
+	Allow user and password in http url --- http://user:password@host/
+
+Wed Nov  9 20:20:45 MET 2005 mikulas:
+
+	In graphics mode, prefer "title" to "alt" in <img> tag
+
+Thu Nov  3 00:22:18 MET 2005 mikulas:
+
+	Status line is redrawn only when it changes --- prevents cursor flicker
+
+Wed Nov  2 15:36:17 MET 2005 mikulas:
+
+	Do not use HTTP/1.1 on lighttpd server
+
+Mon Oct 24 22:19:33 CEST 2005 mikulas:
+
+	Account document.write content to javascript memory quota
+	Print javascript memory in "memory info" dialog window
+
+Mon Oct 24 16:32:40 MET 2005 mikulas:
 
 	Recognise "title" attribute in <LINK> tag
 
-Mon Oct 24 16:27:16 MET DST 2005 mikulas:
+Mon Oct 24 16:23:41 MET 2005 mikulas:
 
 	Accept application/xhtml as html type
 
-Fri Oct 21 16:01:46 MET DST 2005 mikulas:
+Sun Oct 23 03:38:48 cet 2005 mikulas:
+
+	Allow usemap and ismap on images simultaneously
+
+Sat Oct 22 17:16:52 MET 2005 Rezzie <rezzie@telkom.net>:
+
+	Updated Indonesian translation
+
+Fri Oct 21 15:58:56 MET 2005 mikulas:
 
 	&quote;
 
-Thu Oct 20 03:30:01 MET DST 2005 mikulas:
+Thu Oct 20 03:30:48 MET DST 2005 mikulas:
 
 	Special handling for relative URLs beginning with '&' or '?'
 
-Tue Oct 11 03:55:59 MET DST 2005 mikulas:
+Wed Oct 12 13:27:52 MET 2005 Jakub Bogusz <qboosh@pld-linux.org>:
+
+	Updated Polish translation
+
+Tue Oct 11 17:23:26 MET 2005 mikulas:
+
+	An optional retry on internal server errors
+
+Tue Oct 11 03:48:52 MET DST 2005 mikulas:
 
 	Get indenting of TAB character in UTF-8 documents right
 
-Fri Sep  9 00:40:44 MET 2005 mikulas:
+Tue Oct 11 02:40:17 MET DST 2005 mikulas:
+
+	Better glob match that does not cause stack overflow
+
+=== RELEASE 2.1pre19 ===
+
+Fri Sep  9 00:37:42 CEST 2005 mikulas:
 
 	Fix crash when directory disappeared while opening it
 
-Tue Sep  6 16:15:07 MET 2005 mikulas:
+Tue Sep  6 16:14:26 MET 2005 mikulas:
 
 	HTTP 307 redirect (as equivalent of 302)
+
+Sun Aug 21 19:18:34 MET 2005 mikulas:
+
+	sponsored by Arida Technology (www.arida-technology.com)
+	Keyboard handlers in javascript
+	Inverted text
+
+Tue Aug  9 16:06:38 MET DST 2005 Jakub Bogusz <qboosh@pld-linux.org>:
+
+	Updated Polish translation
+
+Tue Aug  9 16:05:04 MET DST 2005 Jakub Bogusz <qboosh@pld-linux.org>:
+
+	Fixed memory corruption when passing parameters to framebuffer driver
+
+Thu Aug  4 18:11:37 CEST 2005 mikulas:
+
+	Fixed compilation problem without javascript
+
+=== RELEASE 2.1pre18 ===
+
+Sat Jul 30 00:01:55 MET DST 2005 mikulas:
+
+	Fixed reverse numbering of form fields in javascript
+
+Fri Jul 29 22:45:30 MET 2005 mikulas:
+
+	Fixed cursor position in bookmarks after HOME, END, PAGE UP, PAGE DOWN
+
+Thu Jun 23 04:05:45 cet 2005 mikulas:
+
+	<sub>, <sup> and alignment images to top and middle of line
+
+Wed Jun 22 18:15:11 MET 2005 mikulas:
+
+	Implemented <hr> in graphics mode
 
 Mon Jun 20 15:57:00 cet 2005 mikulas:
 
 	Do not make whitechar-elimination on invisible form entries
 
-Sat Jun 18 18:17:43 MET 2005 mikulas:
+Sat Jun 18 18:16:24 MET 2005 mikulas:
 
 	Allow '#' in smb files and directories
 
-=== RELEASE 1.00pre14 ===
+Fri Jun 17 23:10:24 MET 2005 Simen Graaten <simeng@slarkware.com>:
 
-Sun May  8 15:37:42 cet 2005 mikulas:
+	Updated Norwegian translation
+
+Mon Jun  6 18:47:37 MET 2005 mikulas:
+
+	Do not respond to unknown authentication methods with basic response
+
+Sun May 29 05:43:58 cet 2005 mikulas:
+
+	Do always use cache when going back
+
+Sun May 22 21:03:16 MET 2005 mikulas:
+
+	Allow '#' in ftp password
+
+Wed May 18 01:18:58 cet 2005 mikulas:
+
+	Allow image map elements without href and only with javascript
+
+Thu May 12 04:15:43 MET 2005 mikulas:
+
+	Fixed crash with -anonymous and "frame at full-screen" in menu
+
+Sun May  8 15:37:22 cet 2005 mikulas:
 
 	Fix lockup with terminal height only 1 or 2 characters
 
-Sun May  8 14:33:50 cet 2005 mikulas:
+Fri May  6 20:06:50 MET 2005 mikulas:
 
-	Do not handle SIGTERM
+	Make '*' work in graphics mode too
+	Fixed badly displayed images when image displaying was toggled
 
-Sat Apr  2 20:13:39 MET DST 2005 mikulas:
+Thu Apr 21 21:52:28 cet 2005 mikulas:
+
+	Do not count time that connection waits in queue
+
+Fri Apr 15 17:37:51 MET 2005 mikulas:
+
+	Do not parse <TITLE> inside <SCRIPT>
+
+Sat Apr  2 20:32:01 MET DST 2005 mikulas:
 
 	Workaround for bug in Sun C compiler
 
-=== RELEASE 1.00pre13 ===
-
-Fri Apr  1 01:29:49 MET DST 2005 mikulas:
-
-	Accept (and ignore) subject in mailto (backported from links 2)
-
-Fri Apr  1 01:18:27 MET DST 2005 mikulas:
-
-	Support for another smb client --- smbc by Martin Zlomek
-
-Thu Mar 31 23:43:40 MET DST 2005 mikulas:
+Fri Apr  1 00:21:39 MET DST 2005 mikulas:
 
 	Accept &#13; as line break in textarea (fixes bugzilla)
 
-Wed Feb 23 18:38:47 MET 2005 mikulas:
+Thu Mar 24 04:06:53 MET 2005 Federico G. Schwindt <fgsch@lodoss.net>:
+
+	Use MD5 functions from libc when available
+
+Mon Mar  7 22:36:45 MET 2005 mikulas:
+
+	Support for another smb client --- smbc by Martin Zlomek
+
+Wed Mar  2 23:39:30 CET 2005 mikulas:
+
+	Fixed crash of javascript with debuglevel<2 (uninitialized memory)
+	Fixed possible touching of data beyond allocated space in javascript
+
+=== RELEASE 2.1pre17 ===
+
+Wed Feb 23 19:46:01 MET 2005 mikulas:
+
+	Correct implementation of non-aggressive cache (i.e. allow more keywords
+	in Cache-Control
+
+Wed Feb 23 18:36:52 MET 2005 mikulas:
 
 	Allow typing only characters valid in current character set into form
 	fields on web
 
-Wed Feb 23 16:32:23 MET 2005 Serge Winitzki <serge at cosmos dot phy dot tufts dot edu>:
+Wed Feb 23 16:31:56 MET 2005 Serge Winitzki <serge at cosmos dot phy dot tufts dot edu>:
 
 	Updated Russian translation
 
-Wed Feb 23 16:25:54 MET 2005 mikulas:
+Wed Feb 23 16:25:41 MET 2005 mikulas:
 
 	Allow cookies without a value
 
-Mon Feb 14 13:18:23 MET 2005 mikulas:
+Mon Feb 14 13:15:00 MET 2005 mikulas:
 
 	When server returns cookie values as "deleted", delete it
 
-Tue Feb  1 18:23:04 MET 2005 mikulas:
+Tue Feb  1 18:22:11 MET 2005 mikulas:
 
 	Fixed non-working find next/previous in view menu
 
-Thu Jan 27 16:28:23 MET 2005 mikulas:
+Thu Jan 27 19:09:46 CET 2005 mikulas:
+
+	Fixed wrong prototypes causing compilation problem on MacOS X and some
+	other systems
+
+Thu Jan 27 16:28:35 MET 2005 mikulas:
 
 	Fixed configure failure on Solaris
 
-Sat Jan 22 20:47:26 MET 2005 mikulas:
+Thu Jan 27 00:23:09 CET 2005 Brain
+
+	javascript: set form action
+
+=== RELEASE 2.1pre16 ===
+
+Sat Jan 22 20:27:41 cet 2005 mikulas:
+
+	Fixed empty lines in lists in graphics mode
+
+Sat Jan 22 04:40:28 cet 2005 mikulas:
 
 	On OS/2 use 8.3 temp names, allowing DOS viewers
 
-Sat Jan 22 04:41:31 cet 2005 mikulas:
+Sat Jan 22 03:55:08 cet 2005 mikulas:
 
 	Send Accept-Language
 
-Wed Jan 19 02:57:37 MET 2005 Jakub Bogusz <qboosh@pld-linux.org>:
+Sat Jan 22 02:05:47 MET 2005 mikulas:
+
+	Display is scrolled to see the whole textarea when modifying it
+
+Wed Jan 19 02:57:56 MET 2005 Jakub Bogusz <qboosh@pld-linux.org>:
 
 	Updated Polish translation
 
-Wed Jan 19 02:57:21 MET 2005 mikulas:
+Wed Jan 19 01:39:44 MET 2005 mikulas:
 
-	-codepage for -dump
+	-dump url
+	Completed option documentation in links -h
 
-Sun Jan  2 18:50:19 cet 2005 mikulas:
+Sun Jan 16 23:57:58 MET 2005 mikulas:
+
+	Fixed bug in svgalib accelerator (tested for different operations)
+
+Mon Jan 10 23:04:22 MET 2005 mikulas:
+
+	Support for border on framebuffer (use -mode left,top,right,bottom)
+	to set screen border
+
+Sun Jan  2 20:46:18 MET 2005 Dieter <netbsd@sopwith.solgatos.com>:
+
+	Fix warnings on 64-bit machines
+
+Sun Jan  2 20:39:51 MET 2005 Edward Rosten <er258@hermes.cam.ac.uk>:
+
+	Block ad images
+
+Sun Jan  2 18:51:15 cet 2005 mikulas:
 
 	Do not cache redirects if redirect loop is going to happen
 
-Thu Nov 25 00:59:49 MET 2004 mikulas:
+Wed Nov 17 15:16:01 MET 2004 mikulas:
 
 	Support for mms:// urls
 
@@ -548,320 +2286,372 @@ Tue Nov 16 15:18:55 MET 2004 mikulas:
 
 	Send content-type when uploading files
 
-Sun Oct 31 16:56:37 MET 2004 mikulas:
+Tue Nov  9 00:12:05 MET 2004 mikulas:
+
+	^O to go to next form field in braill mode
+
+Sun Oct 31 17:17:53 MET 2004 mikulas:
 
 	Correct jump at tag if it points to position, that moves during loading
 
-=== RELEASE 1.00pre12 ===
-
-Tue Oct 26 00:22:49 MET DST 2004 Jakub Bogusz <qboosh@pld-linux.org>:
-
-	Updated Polish translation
-	Fixed TSL -> TLS typo
-
-Sat Oct 23 22:13:51 MET 2004 mikulas:
+Sat Oct 23 22:14:03 MET 2004 mikulas:
 
 	Disallow opening new windows in anonymous mode
 
-Fri Oct 22 22:32:19 MET DST 2004 mikulas:
+Fri Oct 22 22:31:20 MET DST 2004 mikulas:
 
 	Fixed bugs discovered with mangleme:
 	http://lcamtuf.coredump.cx/mangleme/mangle2.cgi
 	memory leak with nested <select multiple name=n> tags
 	integer overflow in frame widths causes an internal error
 	internal error with base url only containing //
+	internal error with base url containing javascript:
 	fixed incorrect generating of title (does not cause crash, but excessive
 		memory allocation)
-	fixed some quadratic algorithms
+	fixed some quadratic algorithms in title displaying
+	internal error with invalid codebase attribute in OBJECT tag
+	fixed quadratic algorithm in menu creating
 
-Thu Oct 21 14:57:16 MET DST 2004 mikulas:
+Fri Oct 22 20:12:05 MET DST 2004 mikulas:
 
 	Cleaned up configure script, wrote some more replacements of non-present
 	functions
 
-Thu Oct 21 14:56:39 MET DST 2004 mikulas:
+Fri Oct 22 20:11:56 MET DST 2004 mikulas:
 
 	Fixed a lot of cases where overflowed integer arithmetic could cause
 	memory allocation corruption
 
-Sun Oct 17 02:37:18 MET DST 2004 mikulas:
+Sat Oct 16 21:38:00 MET 2004 mikulas:
 
 	Allow browsing local and ftp files with '#' in filename
 
-Thu Oct 14 04:00:38 MET DST 2004 mikulas:
+Mon Oct 11 01:26:54 CEST 2004 Karel Karlik <kkar8447@ss1000.ms.mff.cuni.cz>:
+
+	Fixed framebuffer in 15 and 16-bit modes
+
+Wed Oct  6 00:39:27 MET 2004 mikulas:
 
 	Improved parsing of ftp directories in Windows NT format
 
-Sun Oct  3 17:37:47 MET 2004 mikulas:
+Sun Oct  3 17:37:32 MET 2004 mikulas:
 
 	Correct reporting of error on ftp directories
 
-Thu Sep 23 18:48:58 MET 2004 mikulas:
+Sat Oct  2 04:29:40 MET 2004 mikulas:
+
+	Ctrl-U cuts into clipboard
+
+Fri Oct  1 15:51:37 MET 2004 mikulas:
+
+	Display the whole page when connection to an image stucks
+
+Thu Sep 23 18:47:11 MET 2004 mikulas:
 
 	Resolving of double '..' in references
 
-=== RELEASE 1.00pre11 ===
+Fri Sep 10 04:23:24 cet 2004 mikulas:
 
-Fri Sep  3 03:07:22 MET DST 2004 Wojciech Puchar <wojtek@tensor.3miasto.net>:
+	Correctly find file extension if '?' and ';' is in ftp file
+
+Fri Sep  3 03:07:52 MET DST 2004 Wojciech Puchar <wojtek@tensor.3miasto.net>:
 
 	Portability fixes for SunOS
 
-Wed Sep  1 19:09:15 MET DST 2004 Strahinya Radich <mr99164@alas.matf.bg.ac.yu>:
+Fri Sep  3 02:47:18 MET DST 2004 mikulas:
+
+	Fixed memory leak in http authentication
+
+Wed Sep  1 19:08:46 MET DST 2004 Strahinya Radich <mr99164@alas.matf.bg.ac.yu>:
 
 	Updated Serbian translation
 
-Wed Aug 18 22:32:48 MET DST 2004 mikulas:
+Sun Aug 29 17:43:39 MET DST 2004 mikulas:
 
-	Removed a debug message when posting form
+	Fix crash when saving options in svgalib due to missing shell
 
-=== RELEASE 1.00pre10 ===
+Thu Jul 29 13:03:07 MET 2004 mikulas:
 
-Sat Jul 24 21:41:02 MET DST 2004 mikulas:
+	Allowed dots in extensions (for example "ps.gz")
 
-	Fixed master image stopped after Ctrl-Z and not responded to other
-	images after 1.00pre9
+Sun Jul 25 00:34:04 MET DST 2004 mikulas:
 
-Sat Jul 24 20:36:27 MET DST 2004 mikulas:
+	Allow Ctrl-Z in framebuffer driver
 
-	Fixed slave images of links not terminating after previous change
-
-=== RELEASE 1.00pre9 ===
-
-Sat Jul 24 14:55:31 MET DST 2004 mikulas:
+Sat Jul 24 14:56:13 MET DST 2004 mikulas:
 
 	Fixed an error when signal interrupted another syscall
 
-Sat Jul 24 02:15:03 MET 2004 mikulas:
+Sat Jul 24 02:15:35 MET 2004 mikulas:
 
 	Fixed bad error codes because of errno modified by signal handler
 
-Fri Jul 23 21:28:24 MET 2004 mikulas:
+Fri Jul 23 21:29:22 MET 2004 mikulas:
 
 	Fixed links stuck after Ctrl-Z when one code path lasted more than
 	1 second (because of pagefault, too high cpu load or similar)
 
-Fri Jul 23 20:14:43 MET 2004 mikulas:
+Fri Jul 23 20:15:29 MET 2004 mikulas:
 
 	Fixed incorrectly displayed character entities (&) in attributes (img
 	alt, etc.)
 
-Tue Jun 29 03:32:39 MET 2004 mikulas:
+Tue Jun 29 03:35:32 MET 2004 mikulas:
 
 	Fixed overflow when accessing local files >= 2G
 
-=== RELEASE 1.00pre8 ===
+Mon Jun 28 01:34:45 MET 2004 mikulas:
 
-Sat Jun 26 13:47:46 MET DST 2004 mikulas:
+	Ctrl-K cuts current line
+
+Sat Jun 26 13:54:53 MET DST 2004 mikulas:
 
 	Send Content-Type when uploading files
 
-Sat Jun 26 00:34:31 MET 2004 mikulas:
+Sat Jun 26 02:24:32 MET 2004 mikulas:
+
+	y and t move word forward and backward in braille terminal
+
+Sat Jun 26 00:35:17 MET 2004 mikulas:
 
 	Resolve dot-number IP address on systems when gethostbyname and
 	gethostbyaddr can't resolve it
 
-Mon Jun 21 00:04:13 MET DST 2004 mikulas:
+Mon Jun 21 15:02:25 MDT 2004 mpat7421:
 
-	Fixed crash when Ctrl-Z was pressed in non-main instance (sice 1.00pre6)
+	Fixed compilation problems on Irix
 
-Sun Jun 20 18:50:15 MET DST 2004 mikulas:
+Sun Jun 20 18:49:53 MET DST 2004 mikulas:
 
 	Posting of <option> fields in correct charset
 
-=== RELEASE 1.00pre7 ===
+Sun Jun 20 15:58:08 MET DST 2004 Sam <sam@frida.fri.utc.sk>:
 
-Sat Jun 19 18:10:33 MET 2004 mikulas:
+	SDL graphics driver
+
+Sat Jun 19 18:10:05 MET 2004 mikulas:
 
 	Fixed case when '&' entities or special characters were in ftp or disk
 	filenames
 
-Sat Jun 19 16:47:20 MET 2004 mikulas:
+Sat Jun 19 18:09:50 MET 2004 mikulas:
 
 	Fixed compilation problem on AIX
 
-=== RELEASE 1.00pre6 ===
-
-Thu Jun 17 20:26:24 MET DST 2004 mikulas:
+Thu Jun 17 20:32:59 MET DST 2004 mikulas:
 
 	Correct handling of Ctrl-Z when executing user viewer
 
-Fri Jun 11 03:12:38 MET 2004 mikulas:
+Fri Jun 11 03:17:20 MET 2004 mikulas:
 
 	Fixed incorrect error handling in smb
 
-=== RELEASE 1.00pre5 ===
-
-Sun Jun  6 03:11:42 MET 2004 mikulas:
+Sun Jun  6 03:12:00 MET 2004 mikulas:
 
 	Allow '@' in ftp password in url
 
-Thu Jun  3 22:54:29 MET 2004 mikulas:
-
-	Fixed a bug that clicking on broken link after redirect five times
-	displayed the redirect itself.
-
-Thu Jun  3 22:54:15 MET 2004 mikulas:
+Thu Jun  3 22:39:24 MET 2004 mikulas:
 
 	Allow characters >= 128 in ftp filenames
 
-Wed Apr 28 14:18:16 MET DST 2004 mikulas:
+Fri May 28 15:40:35 CEST 2004 mikulas
 
-	Fixed crash when selecting Hungarian translation
+	Handling URLs in form http://host?params
 
-Sun Apr  4 04:47:28 MET DST 2004 Kalev Lember <kalev@colleduc.ee>:
+Mon May 17 17:10:22 MET DST 2004 Serge Winitzki <serge at cosmos dot phy dot tufts dot edu>:
+
+	Updated German and Russian localization
+
+=== RELEASE 2.1pre15 ===
+
+Wed Apr 28 17:08:38 CEST 2004 BRain
+
+	KEYS: overview of all keys
+
+Tue Apr  6 21:27:36 CEST 2004 mikulas:
+
+	Support for braille terminal
+
+Sun Apr  4 04:45:28 MET DST 2004 Kalev Lember <kalev@colleduc.ee>:
 
 	Updated Estonian translation
 
-=== RELEASE 1.00pre4 ===
+Fri Apr  2 00:01:44 MET DST 2004 mikulas:
 
-Wed Mar  3 18:43:46 MET 2004 mikulas:
+	More svgalib modes added
+
+Wed Mar 24 15:50:09 CET 2004 mikulas:
+
+	Cursor on selected line in bookmarks (for Braille terminals)
+
+Mon Mar 15 17:26:02 MET 2004 Vladimir Marek <marek@printsoft.cz>:
+
+	Fixed --disable-graphics and --disable-javascript
+
+Wed Mar  3 19:49:52 CET 2004 BRain
+
+	Fixed encoding bug in javascript when modifying form element value and
+	default value.
+
+Wed Mar  3 18:43:05 CET 2004 mikulas:
 
 	Fixed crash when document changes under us and user presses 'd'
 
-Tue Feb 24 23:38:42 cet 2004 William Yodlowsky <wyodlows@andromeda.rutgers.edu>:
-
-	SSL patch for Solaris and other systems without /dev/random 
-
-Tue Feb 24 23:24:59 cet 2004 mikulas:
+Tue Feb 24 23:26:10 cet 2004 mikulas:
 
 	Fixed crash when pressed '=' on page with incomplete frames
-
-Mon Feb 23 17:44:53 MET 2004 Serge Winitzki <serge at cosmos dot phy dot tufts dot edu>:
-
-	Updated Russian translation
-
-=== RELEASE 1.00pre3 ===
 
 Mon Feb 23 01:37:44 cet 2004 mikulas:
 
 	Do not strip filename when relative url begins with '?'
 
-=== RELEASE 1.00pre2 ===
+Sun Feb 15 17:46:53 cet 2004 mikulas:
 
-Sat Feb 14 21:09:59 MET 2004 mikulas:
+	SSL fix on OS/2
+
+Sat Feb 14 21:09:45 MET 2004 mikulas:
 
 	Do not timeout when file upload lasts too long
 
-=== RELEASE 1.00pre1 ===
-
-Thu Feb 12 16:23:38 MET 2004 mikulas:
+Thu Feb 12 16:22:23 CET 2004 mikulas:
 
 	Terminal mouse handling returned back before change from
-	Thu Oct  9 16:47:32 MET DST 2003
+	Thu Oct  9 16:44:10 GMT 2003
 
-Sun Jan 18 02:10:50 cet 2004 mikulas:
+Mon Feb  2 17:28:31 cet 2004 BRain
+
+	Copy and paste to clipboard
+
+Sun Feb  8 20:00:50 cet 2004 BRain & mikulas:
+
+	Selecting text to clipboard
+
+Sun Feb  8 18:04:48 CET 2004 mikulas:
+
+	Allow '?' instead of '/' as separator of host and path in url
+
+Sat Feb  7 22:55:39 MET 2004 BRain:
+
+	Ask for overwrite when file exists.
+
+Sun Feb  1 04:40:55 MET 2004 mikulas:
+
+	Fixed memory leak with read-only select boxes
+
+Sun Jan 18 02:10:03 cet 2004 mikulas:
 
 	textarea wrap=hard
 
-Thu Jan  1 18:54:25 MET 2004 mikulas:
+Wed Jan  7 10:58:29 MET 2004 BRain:
+
+	Added language hints to encodings.
+
+Thu Jan  1 18:54:50 MET 2004 mikulas:
 
 	Strip '#' of tag names
 
-Tue Dec 30 01:16:11 MET 2003 mikulas:
+Tue Dec 30 01:15:54 MET 2003 mikulas:
 
 	Disallow network options in anonymous mode
 
-Tue Dec 30 01:11:51 MET 2003 mikulas:
+Tue Dec 30 01:12:15 MET 2003 mikulas:
 
 	Fixed wrong error code and fd leak on error when uploading files
 
-Tue Dec 30 00:57:42 MET 2003 mikulas:
+Tue Dec 30 00:58:41 MET 2003 mikulas:
 
 	Fixed incorrect parsing of '&' entities in image maps
 
-=== RELEASE 0.99 ===
-
-Thu Dec 18 17:20:37 MET 2003 mikulas:
+Thu Dec 18 17:20:10 MET 2003 mikulas:
 
 	Do not hang when opening filo with file://
-
-=== RELEASE 0.99pre17 ===
 
 Tue Dec 16 13:29:35 MET 2003 mikulas:
 
 	Fixed crash when url contains character with code 1
 	Fixed a security bug --- hiding url was possible with character code 1
 
-Sun Dec 14 22:39:07 MET 2003 Eduard Werner <edi.werner@gmx.de>:
+Sun Dec 14 22:39:27 MET 2003 Eduard Werner <edi.werner@gmx.de>:
 
 	Updated Upper Sorbian translation
 	Updated Polish translation
 
-=== RELEASE 0.99pre16 ===
+Sun Dec 14 15:06:00 cet 2003 mikulas:
+
+	Allow urls: file:///d:/directory/file on OS/2
+
+Thu Dec 11 23:37:50 MET 2003 mikulas:
+
+	Fixed proxy sent in referrer
 
 Thu Dec 11 17:31:59 MET 2003 Eduard Werner <edi.werner@gmx.de>:
 
 	Upper Sorbian translation
 
-Mon Dec  8 02:40:56 MET 2003 Petr Baudis <pasky@ucw.cz>:
+Mon Dec  8 02:41:38 MET 2003 Petr Baudis <pasky@ucw.cz>:
 
 	Fixed user in smb
-
-=== RELEASE 0.99pre15 ===
 
 Sun Dec  7 12:44:10 cet 2003 mikulas:
 
 	Support directories without '/' at the end on just another ftp server
 
-Sat Dec  6 23:59:57 cet 2003 mikulas:
-
-	Fixed double error message on certain errors
-
-Sat Dec  6 12:17:24 cet 2003 mikulas:
-
-	Memory debugger disabled again
-
-Sun Nov 30 01:03:23 MET 2003 Petr Baudis <pasky@ucw.cz>:
+Sun Nov 30 01:03:55 MET 2003 Petr Baudis <pasky@ucw.cz>:
 
 	Do not call memset from signal handler
 
 Sun Nov 30 00:22:04 MET 2003 Marc Zonzon <Marc.Zonzon@univ-rennes1.fr>:
 
+	Disable AC_BIG_ENDIAN and AC_LITTLE_ENDIAN name clash
 	Use pkg-config to find openssl
 
-Wed Nov 26 22:52:57 MET 2003 mikulas:
+Wed Nov 26 22:52:25 MET 2003 mikulas:
 
 	Fixed signal-delivery delay
 
-=== RELEASE 0.99pre14 ===
+Sat Nov 22 23:11:41 MET 2003 mikulas:
 
-Sat Nov 22 23:06:16 MET 2003 mikulas:
+	Fixed crash in view_gr.c when displaying source
+
+Sat Nov 22 23:07:46 MET 2003 mikulas:
 
 	Fixed cache problems with long files in smb and when restarting http
 
-Fri Nov 21 03:29:58 MET 2003 mikulas:
+Fri Nov 21 02:46:24 MET 2003 mikulas:
 
 	Removed useless reallocs, speed up rendering
 
-Tue Nov 18 23:38:41 MET 2003 mikulas:
+Wed Nov 19 00:14:11 MET 2003 mikulas:
+
+	Do not send more Authorization headers
+	Detect infinite loop in authorization responses
+
+Tue Nov 18 15:59:14 GMT 2003 mikulas:
 
 	FreeBSD frames
 
-=== RELEASE 0.99pre13 ===
+=== RELEASE 2.1pre14 ===
 
-Wed Nov  5 03:44:20 MET 2003 Wojciech Puchar <wojtek@tensor.3miasto.net>:
+Wed Nov  5 03:43:33 MET 2003 Wojciech Puchar <wojtek@tensor.3miasto.net>:
 
-	sprintf returns bad values on SunOS 4
+	SunOS 4 portability fixes
 
-Wed Nov  5 01:41:42 MET 2003 mikulas:
+Thu Oct 30 11:10:26 MET 2003 Brain:
 
-	Fixed invalid blank frames introduced in 0.99pre9
+	Fixed bug with moving bookmark directory into itself
+	Search in bookmarks, extensions and associations
 
-=== RELEASE 0.99pre12 ===
-
-Mon Oct 27 23:26:57 MET 2003 mikulas:
+Mon Oct 27 23:28:32 MET 2003 mikulas:
 
 	FTP rest was broken after passive FTP
 
-Mon Oct 27 16:49:42 MET 2003 mikulas:
+Mon Oct 27 21:43:55 MET 2003 mikulas:
 
 	Support for smb:// urls. smbclient must be installed
 
-Mon Oct 27 02:50:14 MET 2003 mikulas:
+Mon Oct 27 02:51:46 MET 2003 mikulas:
 
 	Support for incomplete pasv addresses
-
-=== RELEASE 0.99pre11 ===
 
 Sun Oct 26 15:37:13 MET 2003 mikulas:
 
@@ -871,214 +2661,322 @@ Sat Oct 25 02:53:27 cet 2003 mikulas:
 
 	Do not send first ftp command until head is received
 
-Wed Oct 22 16:42:43 MET DST 2003 mikulas:
+Wed Oct 22 23:41:07 MET DST 2003 Andrei Paskevich <andrei@capet.iut-fbleau.fr>:
+
+	Image view & download with 'i', '*' to change inlined image display
+
+Wed Oct 22 21:00:28 MET DST 2003 mikulas:
+
+	Display image names
+
+Wed Oct 22 17:12:23 MET DST 2003 mikulas:
 
 	Better parsing of ftp directories
 
-Mon Oct 20 16:35:22 MET DST 2003 Serge Winitzki <serge at cosmos dot phy dot tufts dot edu>:
+Tue Oct 21 13:39:04 MET DST 2003 mikulas:
+
+	Fixed authorization not working when file was in top directory
+
+Mon Oct 20 16:33:47 GMT 2003 Serge Winitzki <serge at cosmos dot phy dot tufts dot edu>:
 
 	Updated Russian translation
 
-=== RELEASE 0.99pre10 ===
-
-Mon Oct 13 21:42:20 MET DST 2003 mikulas:
+Mon Oct 13 21:42:39 MET DST 2003 mikulas:
 
 	Allow broken html tags with '=' inside
 
-Mon Oct 13 03:57:59 MET DST 2003 mikulas:
+Mon Oct 13 03:58:59 MET DST 2003 mikulas:
 
 	Do not retry DNS failures
 
-Thu Oct  9 22:37:37 MET DST 2003 mikulas:
+=== RELEASE 2.1pre13 ===
+
+Thu Oct  9 22:37:06 MET DST 2003 mikulas:
 
 	Fixed possibility that invalid communication on socket could crash links
 
-Thu Oct  9 16:47:32 MET DST 2003 mikulas:
+Thu Oct  9 16:44:10 GMT 2003 mikulas:
 
 	Do not print 1000l on FreeBSD console on exit
 
-Wed Oct  8 01:54:10 MET DST 2003 mikulas &
-				 Petr Kulhavy <brain@artax.karlin.mff.cuni.cz>:
+Tue Oct  7 18:38:48 GMT 2003 mikulas:
 
-	Passive FTP (based on Brain's implementation from links 2)
+	Fixed passive FTP, added option to fast FTP
 
-Fri Oct  3 23:02:42 MET DST 2003 mikulas:
+Mon Oct  6 00:29:56 cet 2003 mikulas:
+
+	Print host name in HTTP auth dialog
+
+Sun Oct 5 22:35:21 MET DST 2003 Brain:
+
+	Passive FTP.
+
+Fri Oct  3 23:02:59 MET DST 2003 mikulas:
 
 	Fixed incorrect truncating of file on 304 reply
 
-Sun Sep 28 05:52:26 MET DST 2003 mikulas:
+Fri Oct  3 21:22:11 MET DST 2003 Serge Winitzki <serge at cosmos dot phy dot tufts dot edu>:
 
-	Fixed possible aliasing bug in lists
+	Updated Russian translation
+	Russian letters
+	Changed translation of Russian letters into 7bit ascii
 
-Fri Sep 26 00:23:15 cet 2003 mikulas:
+Thu Oct  2 23:29:47 cet 2003 mikulas:
 
-	Use uname function instead of spawning uname command
-		(backported from links 2)
+	Basic HTTP authentication (sponsored PerMov^(TM))
 
-Fri Sep 26 00:17:27 cet 2003 mikulas:
+Sun Sep 28 06:05:05 CEST 2003 mikulas:
+
+	Fixed aliasing problem on gcc 3.31
+
+Fri Sep 26 00:17:04 cet 2003 mikulas:
 
 	Do not set timeout in DNS lookup and connection making
 
-=== RELEASE 0.99pre9 ===
+Thu Sep 25 01:10:25 cet 2003 mikulas:
 
-Sun Sep 14 20:10:30 MET DST 2003 mikulas:
+	Fixed PmShell quirks in keyboard handling
 
-	Fixed crash when reloading page with frames
+Thu Sep 25 00:37:12 cet 2003 mikulas:
 
-Sun Sep 14 19:53:26 MET DST 2003 mikulas:
+	Fixed screen sometimes not updating highlighted link
+
+=== RELEASE 2.1pre12 ===
+
+Sun Sep 14 20:28:13 MET DST 2003 mikulas:
+
+	Fixed memory leak with Content-Type at http.c:37
+
+Sun Sep 14 19:57:48 MET DST 2003 mikulas:
 
 	Workaround broken cfmakeraw on AIX
 
-Fri Aug 29 19:28:39 MET DST 2003 Strahinya Radich <mr99164@alas.matf.bg.ac.yu>:
+Mon Sep  1 20:18:35 MET DST 2003 Brain:
 
-	Updated Serbian translation
+	Users can enter own shell command for executing external programs.
 
-Tue Aug 12 23:07:03 MET DST 2003 Strahinya Radich <mr99164@alas.matf.bg.ac.yu>:
+Mon Sep  1 16:21:28 MET DST 2003 Brain:
+
+	Commands in X are executed in xterm, not on console.
+
+Sun Aug 31 23:51:58 MET DST 2003 mikulas:
+
+	Do not send Range on refresh
+
+Sun Aug 31 21:33:48 MET DST 2003 Brain
+
+	More information on image files in Info menu.
+
+Sat Aug 30 01:04:33 MET DST 2003 Brain
+
+	Allow opening of a link in a new window (target="_blank").
+
+Fri Aug 29 19:30:35 MET DST 2003 Strahinya Radich <mr99164@alas.matf.bg.ac.yu>:
 
 	Serbian translation
 
-Thu Jul 17 20:35:59 MET DST 2003 Varga Balazs <vinnui@ent.hu>:
+Fri Aug 29 11:51:11 MET DST 2003 Brain
+
+	Added "id" attribute to the <img> tag.
+
+Sun Aug 17 02:24:51 MET DST 2003 Strahinya Radich <mr99164@alas.matf.bg.ac.yu>:
+
+	Serbian Cyrillic letters
+
+Thu Jul 17 19:39:30 MET DST 2003 Varga Balazs <vinnui@ent.hu>:
 
 	Updated Hungarian translation
 
-Wed Jul 16 03:23:00 MET DST 2003 mikulas:
-
-	gen scripts didn't accidentally have execute flag
-
-=== RELEASE 0.99pre8 ===
-
-Sat Jul  5 13:52:50 MET DST 2003 zas <zas@norz.org>:
+Sat Jul  5 13:54:27 MET DST 2003 zas <zas@norz.org>:
 
 	Table frame and rules when no border attribute present
 
-Thu Jul  3 15:19:38 cet 2003 mikulas:
+Thu Jul  3 15:18:20 cet 2003 mikulas:
 
 	Fixed spelling errors found by Francois Gouget's program
 
-Sun Jun 22 01:41:02 cet 2003 mikulas:
+Wed Jun 25 17:12:56 MET DST 2003 mikulas:
+
+	Fixed crash in frames introduced in Tue Jun 17 23:15:46 MET DST 2003
+
+Sun Jun 22 01:43:41 cet 2003 mikulas:
 
 	Add slash after URLs like ftp://host:1234
+
+Tue Jun 17 23:15:46 MET DST 2003 mikulas:
+
+	Anchors allowed in frame locations
 
 Mon Jun 16 16:17:06 cet 2003 mikulas:
 
 	No char with code 13 when pasting in OS/2
 
+Thu Jun 12 20:11:01 cet 2003 mikulas:
+
+	Aggressive cache is in cache dialog, not in HTTP bugs dialog
+
 Thu Jun 12 19:58:42 cet 2003 mikulas:
 
+	302 redirects are not cached
 	Fixed redirect left after reloading cached document
-	Do not send "Range" when reloading
+	Do not send "Range" when cache expires
 
-Tue Jun 10 13:15:23 cet 2003 mikulas:
-
-	Memory debugger was enabled in 0.99pre7, disabled now
-
-=== RELEASE 0.99pre7 ===
-
-Mon Jun  2 15:00:17 MET DST 2003 mikulas:
-
-	Proper recognising of keys F1 - F5
-
-Sun Jun  1 02:23:16 cet 2003 mikulas:
-
-	Home and end in main menu
-
-Wed May 28 02:45:33 cet 2003 mikulas:
+Wed May 28 02:45:06 cet 2003 mikulas:
 
 	Fixed some languages (removed name ELinks)
 
-Tue May 27 22:57:37 cet 2003 mikulas:
+Wed May 28 02:05:07 cet 2003 Serge Winitzki <serge at cosmos dot phy dot tufts dot edu>:
 
-	Fixed '*' in bookmarks when title contained 0xa0
+	Updated Russian localization
 
-Sat May 24 23:25:01 cet 2003 mikulas:
+Tue May 27 22:51:57 cet 2003 mikulas:
+
+	Fixed \001 in bookmarks and window title when title contained 0xa0
+
+Sat May 24 23:24:46 cet 2003 mikulas:
 
 	Fixed bug that can't happen in select_mainmenu
 
-Sat May 24 17:48:46 cet 2003 mikulas:
+Sat May 24 18:50:35 cet 2003 mikulas:
 
 	Fixed numbers on links not consistent with internal order. Still not
 	perfect but better than it used to be.
 
-=== RELEASE 0.99pre6 ===
+=== RELEASE 2.1pre11 ===
 
-Sat May 10 23:13:02 cet 2003 Daniel Berlin <dan@cgsoftware.com>:
+Thu May 22 02:58:00 MET DST 2003 mikulas:
+
+	Correct parse_http_date (sponsored by Awite Bioenergie
+	<http://www.awite.com/> )
+
+Thu May 22 02:57:52 MET DST 2003 mikulas:
+
+	Non-aggressive cache (sponsored by Awite Bioenergie
+	<http://www.awite.com/> )
+
+Wed May 21 23:26:08 cet 2003 mikulas:
+
+	Refresh (sponsored by Awite Bioenergie <http://www.awite.com> )
+
+Wed May 21 19:38:29 MET DST 2003 Thomas Klausner <tk@giga.or.at>
+
+	Support for 16-bit 565 RGB big endian
+	Fix for 24-bit RGB big endian
+
+=== RELEASE 2.1pre10 ===
+
+Sun May 18 12:20:48 MET DST 2003 Brain:
+
+	HTML entities in bookmark file
+
+Sat May 17 21:58:32 MET DST 2003 Brain:
+
+	Manual/automatic javascript action confirmation (sponsored by Awite
+	Bioenergie <http://www.awite.com/> )
+
+Sat May 10 23:15:24 cet 2003 Daniel Berlin <dan@cgsoftware.com>:
 
 	Cookies can contain whitespace (fixes bugzilla)
 
-Sat May 10 19:40:06 cet 2003 mikulas:
+Sat May 10 19:39:09 cet 2003 mikulas:
 
 	Fixed cookie not used when parsing of expiration date fails
 
-Sat May 10 16:32:48 cet 2003 mikulas:
+Wed May  7 21:31:38 MET DST 2003 Sergey Karpov <karpov@sai.msu.su>:
 
-	Header info added to menu
+	Fixed image alt displayed in incorrect codepage
 
-Tue Apr 22 09:04:11 MET DST 2003 Karvinen Ilkka <ik@cs.tut.fi> &
-				 Guido Schimmels <guido.schimmels@freenet.de> &
-				 Varga Balázs <vinnui@broadband.hu> &
-				 Koblinger Egmont <egmont@cs.bme.hu> &
-				 Mátyás János <jani@mail.xubion.hu> &
-				 "Anton 'Keeper' Kopyov"
-				 <keeper@dfipm.vpti.vladimir.ru> &
-				 Miroslav Rudisin
-				 <miero@atrey.karlin.mff.cuni.cz>
+Mon May  5 19:22:17 MET DST 2003 Tamas Gervai <crown@tolna.net>:
 
-	Danish, Finnish, Galician, German, Hungarian, Polish, Russian, Slovak
-	translations updated from Links 2
+	Links icons
 
-Mon Apr 21 19:08:27 cet 2003 mikulas:
+Fri May  2 08:27:01 MET DST 2003 Brain:
+
+	Submit/clean form in link menu of form elements
+
+Mon Apr 21 19:08:08 cet 2003 mikulas:
 
 	99 max connections
 
-=== RELEASE 0.99pre5 ===
-
-Mon Apr 14 23:35:10 MET DST 2003 mikulas:
+Mon Apr 14 23:41:14 MET DST 2003 mikulas:
 
 	Connected frame lines
 
-Fri Apr 11 21:53:14 MET DST 2003 mikulas:
+Mon Apr 14 22:25:15 MET DST 2003 Guido Schimmels <guido.schimmels@freenet.de>:
+
+	Updated German translation
+
+Fri Apr 11 22:07:07 MET DST 2003 Karvinen Ilkka <ik@cs.tut.fi>:
+
+	Updated Finnish translation
+
+Fri Apr 11 22:01:29 MET DST 2003 "Anton 'Keeper' Kopyov" <keeper@dfipm.vpti.vladimir.ru>:
+
+	Updated Russian translation
+
+Fri Apr 11 21:52:42 MET DST 2003 mikulas:
 
 	Convert '\' to '/' in HTTP requests (Windowz ruleeeeez)
 
-Wed Apr  9 21:12:17 cet 2003 mikulas:
+Wed Apr  9 21:12:51 cet 2003 mikulas:
 
 	Allow relative redirects in downloads
 
-=== RELEASE 0.99pre4 ===
+Thu Mar 27 17:15:12 MET 2003 Mátyás János <jani@mail.xubion.hu>:
 
-Wed Mar 19 22:34:50 MET 2003 mikulas:
+	Updated Hungarian translation
 
-	French.lng was accidentally erased in previous version
+Thu Mar 20 19:31:54 MET 2003 Sven Neumann <sven@convergence.de>:
 
-=== RELEASE 0.99pre3 ===
+	DirectFB graphics driver
+
+Wed Mar 19 22:49:21 MET 2003 Andre Valente <a.valente@netcabo.pt>:
+
+	Portuguese translation
 
 Wed Mar 19 20:58:12 MET 2003 mikulas:
 
 	Do not allow more same associations or extensions
 
-Sat Mar 15 14:14:54 MET 2003 mikulas:
+Sat Mar 15 14:32:23 MET 2003 mikulas:
 
 	Option to not send Accept-Charset
 
-Tue Feb 18 23:41:44 cet 2003 mikulas:
+Thu Mar 13 14:05:12 MET 2003 Miroslav Tichy <tichm9am@ss1000.ms.mff.cuni.cz>:
 
-	Upload filed in BINARY mode on OS/2
+	Added several Greek letter pictures.
 
-Wed Feb 12 15:15:29 MET 2003 mikulas:
+Thu Feb 27 18:26:15 MET 2003 mikulas:
 
-	Do not abort loading main page when loading link fails
+	Coords in usemap can contain decimal point
 
-Sun Feb  9 22:06:10 MET 2003 mikulas:
+Thu Feb 27 18:14:11 MET 2003 Serge Winitzki <serge at cosmos dot phy dot tufts dot edu>:
+
+	Updated Russian localization
+
+=== RELEASE 2.1pre9 ===
+
+Wed Feb 26 19:43:00 CET 2003 mikulas:
+
+	Fixed unability to move out of textarea
+
+=== RELEASE 2.1pre8 ===
+
+Wed Feb 19 21:56:32 cet 2003 mikulas:
+
+	Use arrow keys to select links in graphics mode
+
+Tue Feb 18 23:50:00 cet 2003 mikulas:
+
+	Upload files in BINARY mode on OS/2
+
+Sun Feb  9 22:12:19 MET 2003 mikulas:
 
 	Max tries 0 means unlimited retries
 
-=== RELEASE 0.99pre2 ===
+Mon Feb  8 03:25:39 MET DST 2001 Serge Winitzki <serge at cosmos dot phy dot tutfs dot edu>:
 
-Fri Feb  7 10:21:59 MET 2003 mikulas:
-
-	Log to /tmp/log was accidentally enabled in 0.99pre1
-
-=== RELEASE 0.99pre1 ===
+	Updated russian translation
 
 Wed Feb  5 12:13:35 MET 2003 mikulas:
 
@@ -1096,102 +2994,347 @@ Wed Feb  5 10:55:58 MET 2003 mikulas:
 
 	Do not put characters <= 0x20 to HTTP request
 
-Mon Feb  3 00:38:42 cet 2003 Andre Valente <a.valente@netcabo.pt>:
+Fri Jan 10 12:12:08 CET 2003 Stanson <stanson@btv.ru>
 
-	Portuguese translation
+	Clipboard pasting into links (works from all applications).
 
-Mon Feb  3 00:38:29 cet 2003 Yevgeny Gromov <yevgeny@tut.by>:
+Thu Jan  9 16:05:11 CET 2003 mikulas
+
+	Fixed file uploading bug.
+
+Fri Jan  3 15:33:36 CET 2003 mikulas
+
+	Fixed usemap & image scaling
+
+Wed Dec 18 18:38:38 CET 2002 Brain
+
+	Fixed bug in XBM parser.
+
+Tue Dec  3 18:55:05 CET 2002 Brain
+
+	"Kill all connections" function.
+
+Fri Nov 29 15:02:44 CET 2002 Brain
+
+	"Abort and delete file" button in download window.
+
+Wed Nov 27 23:32:37 CET 2002 Brain
+
+	Save bookmarks in File menu
+
+Wed Nov 20 12:22:42 CET 2002 Ludvik Tesar <tesar@mee.tcd.ie>, Brain
+
+	URL to clipboard copying in X.
+
+Mon Nov 18 13:29:56 CET 2002 mikulas
+
+	Fixed an overflow in search
+
+Tue Nov 12 23:51:36 CET 2002 Brain
+
+	Bookmark saving on "Save options"
+
+Mon Nov 11 16:30:27 CET 2002 mikulas
+
+	Apage Coyote added to list of buggy http/1.1 servers
+	(http://abclinuxu.cz)
+
+=== RELEASE 2.1pre7 ===
+
+Fri Nov  8 15:31:06 CET 2002 Clock
+
+	Regenerated font_include.c to comply with the
+	fonts.
+
+=== RELEASE 2.1pre6 ===
+
+Sun Nov  3 11:04:26 CET 2002 Clock
+
+	Fixed invalid Unicode/cp1252.cp which caused 2.1pre5 to
+	be uncompilable
+
+=== RELEASE 2.1pre5 ===
+
+Wed Oct 30 17:22:26 CET 2002 Koblinger Egmont <egmont@cs.bme.hu>
+
+	Updated Hungarian translation
+
+Sun Oct 27 18:02:49 CEST 2002 Brain
+
+	Fixed terrible keyboard bug in X.
+
+Tue Oct 22 18:21:36 CEST 2002 mikulas
+
+	Fixed a crash on svgalib in check_keepalive_connections
+
+Mon Oct 14 17:10:52 CEST 2002 Alexander Udalov <aludal@softhome.net>
+
+	Better Cyrillic characters.
+
+Mon Oct 14 11:00:17 CEST 2002 Yevgeny Gromov <yevgeny@tut.by>
+
+	Belarusian translation updated and new charset koi8_ru
+
+=== RELEASE 2.1pre4 ===
+
+Mon Sep 30 13:22:34 cet 2002 Wojciech Bojdol <wojbol@htc.net.pl>
+
+	Polish translation update.
+
+Mon Sep 30 11:37:05 cet 2002 William Yodlowsky <wyodlows@andromeda.rutgers.edu>
+
+	SSL patch for Solaris and other systems without /dev/random
+
+Mon Sep 30 10:05:39 cet 2002 Josef Schugt <jupp@gmx.de>, Brain
+
+	Links-now button.
+
+Tue Sep 24 19:18:22 CEST 2002 Yevgeny Gromov <yevgeny@tut.by>
 
 	Belarusian translation
 
-Fri Jan 10 15:00:19 MET 2003 mikulas:
+Fri Sep 20 13:58:10 cet 2002 Brain, PerM
 
-	Do not crash when links.his contains bogus data
+	document.all
 
-Thu Jan  9 20:11:58 MET 2003 mikulas:
+Wed Sep 18 19:09:52 cet 2002 Brain
 
-	Allow posting files with null character
+	Swaped open and closed folder symbol in bookmarks.
 
-Sat Nov 23 18:20:52 cet 2002 mikulas:
+Wed Sep 18 9:30:15 cet 2002 Brain:
 
-	Fixed overflow & crash when there are too many found characters
+	Fixed Solaris keyboard translation bug.
 
-=== RELEASE 0.98 ===
+=== RELEASE 2.1pre3 ===
 
-Sat Jun 29 19:46:05 MET DST 2002 someone from FreeBSD:
+Wed Sep 11 13:29:25 cet 2002 PerM:
 
-	-width
+	2 bugfixes in Javascript - first segfault in for(a in b), second
+	caused segfault by return this; construction.
 
-Fri Jun 28 21:36:43 cet 2002 mikulas:
+Mon Aug 26 23:39:07 cet 2002 Brain
 
-	Broken 302 redirect is enable as default
+	Icon name is set in X
 
-Fri Jun 28 19:45:40 cet 2002 mikulas:
+Tue Aug 20 10:54:32 cet 2002 Brain:
+
+	Fixed associations bug
+
+Mon Jul 22 09:00:23 cet 2002 Jordan DeLong <fracture@allusion.net>:
+
+	Fixed occasional paste bug
+
+Sun Jul 21 22:37:21 cet 2002 Brain:
+
+	Euro entity
+
+Mon Jul 16 11:45:17 cet 2002 Chris Lightfoot:
+
+	\xab parsing as hex-number in Javascript
+
+=== RELEASE 2.1pre2 ===
+
+Sat Jun 29 02:41:50 cet 2002 mikulas:
 
 	Use filesystem prealloc on OS/2 - it prevents fragmentation of
 	downloaded files
 
-Tue Jun 25 20:16:18 MET DST 2002 mikulas:
+Sat Jun 29 02:41:29 cet 2002 mikulas:
+
+	Fixed shoting to memory with javascript and input fields
+
+Tue Jun 25 20:18:00 MET DST 2002 mikulas:
 
 	Do not call gethostbyaddr when name is not ip address (it should avoid
 	some useless nameserver queries)
 
-Sun Jun 23 13:08:58 MET DST 2002 mikulas:
+Sun Jun 23 13:35:56 MET DST 2002 mikulas:
+
+	-I/usr/local/include was removed (it was needed for some misconfigured
+	OpenBSD, but it doesn't work with gcc 3.1).
+
+Sun Jun 23 13:13:03 MET DST 2002 mikulas:
 
 	Fixed a delay on quit until async lookup terminates
 
-Mon Jun 17 15:29:00 MET DST 2002 mikulas:
+Wed Jun 19 10:41:51 MET DST 2002 brain:
+
+	Floating point numbers in configure file are stored with '.' even on
+	systems with ',' in locales.
+
+Wed Jun 19 10:13:52 MET DST 2002 brain:
+
+	Line length fix on framebuffer.
+
+Mon Jun 17 17:44:21 MET DST 2002 Richard Pecl <pecl@unicontrols.cz>:
+
+	Use threads on windows
+
+Mon Jun 17 15:28:35 MET DST 2002 mikulas:
 
 	New domain names
 
-Mon Jun 17 15:02:21 MET DST 2002 Denis Lackovic <delacko@fly.srk.fer.hr>:
+Mon Jun 17 15:00:38 MET DST 2002 Denis Lackovic <delacko@fly.srk.fer.hr>:
 
 	Croatian translation
 
-Sat Jun  8 16:21:19 cet 2002 mikulas:
+Mon Jun 17 10:20:03 MET DST 2002 brain:
 
-	On OS/2, disable -Zbin-files (set automatically by SOME versions of
-	autoconf, making behaviour of program autoconf-version-dependent)
+	Small change in x.c to work on some 8-bit displays.
 
-Sat Jun  8 16:14:03 cet 2002 mikulas:
+=== RELEASE 2.1pre1 ===
 
-	Fixed a C aliasing bug in list operations
+Tue Jun 11 14:23:52 MET DST 2002 brain:
 
-Sat Jun  8 16:13:46 cet 2002 mikulas:
+	Fixed mem_free(NULL) in x.c:1001
 
-	Translate '..' at the end of url
+=== RELEASE 2.0 ===
 
-Mon Jun  3 23:16:11 cet 2002 mikulas:
+Mon Jun 10 01:15:33 MET DST 2002 mikulas:
 
-	Fixed one possible (untested) crash in renderer
+	Fixed FP-exception on Alpha
 
-Tue May 28 13:29:14 cet 2002 mikulas:
+Tue Jun  4 20:19:33 CEST 2002 mpat7421:
 
-	Smaller MAX_CWD_LEN (larger value may cause pipe problems)
+	C aliasing bugs fixed in lists
 
-Sun May 26 21:13:49 MET DST 2002 "Carles Sadurní Anguita" <isard@ctv.es>:
+Tue Jun  4 19:02:17 CEST 2002 brain:
 
-	Catalan translation updated
+	Fixed crash on 16 color modes in X
 
-Sat May 25 16:36:22 MET DST 2002 Simen Graaten <simeng@slarkware.com>:
+Tue Jun  4 16:25:31 CEST 2002 brain:
 
-	Norwegian translation
+	Fixed problem with colors on X with big endian, 24bits/4bytes, 0xff0000
+	0xff00 0xff R G B mask
 
-Thu May 23 22:25:37 MET DST 2002 mikulas:
+Mon Jun  3 23:28:25 CEST 2002 Jonas Fonseca <fonseca@diku.dk>:
 
-	Fixed off-by-1 overflow in get_current_url
+	Updated danish translation
 
-Wed May 22 20:15:55 MET DST 2002 mikulas:
+Mon Jun  3 23:25:04 CEST 2002 mpat7421:
 
-	Disabled cookie expire (parse_http_date is broken)
+	Fixed crash in text-mode html renderer
 
-Mon May 20 00:26:33 MET DST 2002 mikulas:
+=== RELEASE 2.0pre6 ===
 
-	Eat newlines in URLs in html
+Thu May 30 22:41:43 MET DST 2002 "Varga Balázs" <vinnui@broadband.hu>:
 
-Wed May 15 20:44:41 cet 2002 mikulas:
+	Updated Hungarian translation
 
-	Fixed crash with -source
+=== RELEASE 2.0pre5 ===
+
+Tue May 28 18:00:43 CEST 2002 clock:
+
+	fixed segfault on big 16-bit png's (when gamma table is
+	used)
+
+=== RELEASE 2.0pre4 ===
+
+Sun May 26 23:53:31 CEST 2002 brain:
+
+	Fixed bug in TIFF's with odd height on big endian
+	machines (white line in half of the height)
+
+Sun May 26 10:14:49 CEST 2002 clock:
+
+	Fixed bad decoding of 16-bit PNG's on big endian
+	platforms and platforms where unsigned short has
+	different size than 2 chars.
+
+Sat May 25 18:47:33 CEST 2002 clock:
+
+	Fixed bad dithering on big endian and depth=130
+	Optimized startup (1/2 of former count of float exponentiations)
+
+Fri May 24 22:04:38 CEST 2002 brain:
+
+	Fixed several C incompatibilities to compile on MIPSpro Compilers,
+	Version 7.3.1.3m (problems noticed by Heiko Schlichting
+	<heiko@FU-Berlin.DE>)
+
+Fri May 24 22:00:00 CEST 2002 PerM:
+
+	Changed debugging system in ipret.c and builtin.c
+
+Fri May 24 20:12:19 CEST 2002 brain:
+
+	Fixed segfault in js_upcall_set_image_src
+
+Thu May 23 22:21:03 CEST 2002 brain:
+
+	Bugfix in name resolving in JS
+	Frame->top upcall fixed
+	Removed possible null-pointer-dereferencing bugs in jsint.c
+
+=== RELEASE 2.0pre3 ===
+
+Thu May 23 18:13:25 CEST 2002 PerM:
+
+	Bugfix in function program(), added document to
+	frames and several other creeping features.
+
+Thu May 23 16:28:20 CEST 2002 clock:
+
+	Fixed a bug in configure.in around libpng
+
+Thu May 23 15:23:10 CEST 2002 brain:
+
+	Added calibration into help menu
+
+=== RELEASE 2.0pre2 ===
+
+Thu May 23 08:47:13 CEST 2002 clock:
+
+	Now compiles with libpng-1.2.2, which has got
+	libpng/png.h instead of png.h
+
+Wed May 22 21:47:27 CEST 2002 brain:
+
+	Fixed frame->top upcall bug
+
+Wed May 22 19:02:36 CEST 2002 brain:
+
+	Fixed referer bug (POST data in URL)
+
+Wed May 22 14:39:58 CEST 2002 clock:
+
+	Moved fonts from 9 directories to just 5 to make font
+	matching faster during runtime.
+
+=== RELEASE 2.0pre1 ===
+
+Mon May 20 14:29:13 CEST 2002 Miroslav Rudisin <miero@atrey.karlin.mff.cuni.cz>:
+
+	Updated Slovak translation
+
+Mon May 20 14:20:20 CEST 2002 brain:
+
+	Added X Window graphics driver
+	Javascript builtin functions
+	Remade the bookmarks
+
+Mon May 20 14:20:10 CEST 2002 mikulas:
+
+	Rewritten for graphics
+	Added Atheos GUI graphics driver
+	Added PMShell graphics driver
+
+Mon May 20 14:19:40 CEST 2002 clock:
+	Added fonts & images
+	Added SVGAlib graphics driver
+
+Mon May 20 14:18:34 CEST 2002 perm:
+
+	Added Javascript
+
+Sun Jul 23 16:30:23 MET DST 2000 mikulas:
+
+	Fixed crash on Unix when $HOME didn't exist
+
+Mon Jul 17 23:36:20 cet 2000 mikulas:
+
+	OS/2: fixed "Process terminated by SIGPIPE" when user touched mouse
+	while exiting
 
 === RELEASE 0.97 ===
 
@@ -1451,7 +3594,7 @@ Tue Jan 29 17:06:11 MET 2002 zas <zas@norz.org>:
 
 	Updated french translation
 
-Tue Jan 29 17:04:59 MET 2002 Ionel Mugurel Ciobîcã:
+Tue Jan 29 17:04:59 MET 2002 Ionel Mugurel Ciobica:
 
 	Romanian translation
 
@@ -1641,7 +3784,7 @@ Sat Jun  2 02:39:21 MET DST 2001 Mediavilla David <f4j900zx001@NOSPAMsneakemail.
 
 	Updated Spanish translation
 
-Sat Jun  2 02:15:19 MET DST 2001 "Martin Norbäck" <d95mback@dtek.chalmers.se>:
+Sat Jun  2 02:15:19 MET DST 2001 "Martin Norba:ck" <d95mback@dtek.chalmers.se>:
 
 	Updated Swedish translation
 
@@ -1693,7 +3836,7 @@ Fri Mar 23 04:23:51 MET 2001 Radovan Stas <radoone@skmi.science.upjs.sk>:
 
 	Slovak translation
 
-Fri Mar 23 04:23:17 MET 2001 Alberto García <berto@gpul.org>:
+Fri Mar 23 04:23:17 MET 2001 Alberto Garcia <berto@gpul.org>:
 
 	Galician translation
 
@@ -1996,7 +4139,7 @@ Tue Sep 19 17:22:54 CEST 2000 mikulas:
 
 	Fixed crash in html parser
 	Fixed crash in bookmark window
-			
+
 === RELEASE 0.92 ===
 
 Fri Jun 30 00:06:18 MET DST 2000 mikulas:
