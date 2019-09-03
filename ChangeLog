@@ -1,3 +1,69 @@
+=== RELEASE 2.20 ===
+
+Mon Aug 26 18:21:43 CEST 2019 mikulas:
+
+	Security bug fixed: when links was connected to tor, it would send real
+	dns requests outside the tor network when the displayed page contains
+	<link rel="dns-prefetch" href="http://host.domain/">.
+
+	This bug is present in links-2.15 to links-2.19.
+
+	Found by Shi Tian <shitian@cock.li>
+
+Sat Aug 24 15:21:03 CEST 2019 Shi Tian <shitian@cock.li>:
+
+	Fix a crash if:
+		External fonts are used
+		Rendering is optimized for LCD
+		The document contains some characters with zero width
+
+Thu Aug 22 18:47:06 CEST 2019 mikulas:
+
+	Accept file urls in the form file://localhost/usr/bin/ or
+	file://hostname/usr/bin/ according to RFC 8089
+
+Wed Aug 21 19:50:14 CEST 2019 mikulas:
+
+	Report errors using dialog boxes on OS/2 and Windows because
+	the standard output may not be visible
+
+Mon Aug 19 19:04:01 CEST 2019 mikulas:
+
+	Fix an error "ERROR: select for write (5) failed: Bad file descriptor"
+	that could happen if the master process was doing dns lookup while being
+	suspended
+
+Sat Aug 17 10:20:45 CEST 2019 mikulas:
+
+	Fixed a memory leak of the SSL structure
+
+Sun Aug  4 15:01:06 CEST 2019 mikulas:
+
+	Try to open the file "/dev/input/mice" and use it instead of gpm.
+		(the user must be in the "input" group)
+	This results in smooth mouse movement on the framebuffer.
+
+Sat Aug  3 18:20:54 CEST 2019 mikulas:
+
+	Report "Lynx/Links" user agent when searching on Google so that
+	Google returns non-css page
+
+Sat Apr 27 19:17:07 CEST 2019 mikulas:
+
+	Support the zstd compression algorithm
+
+Tue Apr 23 21:19:31 CEST 2019 Luc Schrijvers <begasus@gmail.com>, Leorize <leorize+oss@disroot.org>, Francois Revol:
+
+	Haiku support
+
+Sun Apr 21 19:32:26 CEST 2019 mikulas:
+
+	Fix mouse dragging not being reported in xterm
+
+Sun Apr  7 20:18:20 CEST 2019 mikulas:
+
+	Use proper cookie expiry
+
 === RELEASE 2.19 ===
 
 Sun Mar 31 15:59:40 CEST 2019 mikulas
