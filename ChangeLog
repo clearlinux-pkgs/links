@@ -1,3 +1,16 @@
+=== RELEASE 2.20.1 ===
+
+Sun Sep  1 09:02:57 CEST 2019 mikulas:
+
+	Fixed an error "ERROR: event_base_loop failed: Bad file descriptor"
+	if the user quits the master instance on OpenBSD.
+
+	OpenBSD uses an old libevent-1.4.15 and it doesn't handle calling
+	event_reinit from event handler.
+
+	libevent-2.1.11 also doesn't allow calling event_reinit from event
+	handler, so it is fixed as well.
+
 === RELEASE 2.20 ===
 
 Mon Aug 26 18:21:43 CEST 2019 mikulas:
@@ -26,12 +39,6 @@ Wed Aug 21 19:50:14 CEST 2019 mikulas:
 
 	Report errors using dialog boxes on OS/2 and Windows because
 	the standard output may not be visible
-
-Mon Aug 19 19:04:01 CEST 2019 mikulas:
-
-	Fix an error "ERROR: select for write (5) failed: Bad file descriptor"
-	that could happen if the master process was doing dns lookup while being
-	suspended
 
 Sat Aug 17 10:20:45 CEST 2019 mikulas:
 
