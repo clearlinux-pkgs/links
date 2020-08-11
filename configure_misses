@@ -1,4 +1,4 @@
-Configure miss: whether the C compiler (gcc -O2 -g -feliminate-unused-debug-types -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=32 -Wformat -Wformat-security -Wl,-z,now,-z,relro,-z,max-page-size=0x1000,-z,separate-code -Wno-error -ftree-vectorize -ftree-slp-vectorize -Wl,--enable-new-dtags -fcf-protection=return -m64 -march=westmere -mtune=haswell -fasynchronous-unwind-tables -fno-omit-frame-pointer -Wp,-D_REENTRANT -fno-lto  -fPIC ) is a cross-compiler
+Configure miss: whether the C compiler (gcc -O2 -g -feliminate-unused-debug-types -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=32 -Wformat -Wformat-security -Wl,-z,now,-z,relro,-z,max-page-size=0x1000,-z,separate-code -Wno-error -ftree-vectorize -ftree-slp-vectorize -Wl,--enable-new-dtags -fcf-protection=return -Wl,--build-id=sha1 -Wa,-mbranches-within-32B-boundaries -m64 -march=westmere -mtune=haswell -fasynchronous-unwind-tables -fno-omit-frame-pointer -Wp,-D_REENTRANT -fno-lto  -fPIC  -Wl,--build-id=sha1) is a cross-compiler
 Configure miss: EMX
 Configure miss: OpenWatcom
 Configure miss: DJGPP
@@ -44,6 +44,7 @@ Configure miss: MouOpen
 Configure miss: _read_kbd
 Configure miss: XFree for OS/2
 Configure miss: RAND_egd
+Configure miss: SSL_get1_peer_certificate
 Configure miss: SSL_load_error_strings
 Configure miss: CRYPTO_set_mem_functions without file/line
 Configure miss: brotli/decode.h
