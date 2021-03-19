@@ -1,3 +1,31 @@
+=== RELEASE 2.22 ===
+
+Sat Jan 23 18:11:41 CET 2021 mikulas:
+
+	Save and restore the terminal using xterm escape codes
+
+Sat Nov 28 19:27:47 CET 2020 mikulas:
+
+	Save and restore the console using "cons.saver" from
+	Midnight Commander
+
+Sat Nov 28 11:05:42 CET 2020 mikulas:
+
+	Support UTF-8 frames
+
+Sun Nov 22 17:20:29 CET 2020 Emir Yasin SARI <bitigchi@me.com>:
+
+	Updated the Turkish translation
+
+Sat Aug 22 10:05:27 CEST 2020 Ing. Daniel G. Gionco <dggionco@hotmail.com>:
+
+	Updated the Spanish translation
+
+Wed Aug 12 20:04:38 CEST 2020 mikulas:
+
+	Fixed a bug in displaying non-printable characters
+	(reported by Jean-Philippe MENGUAL <jpmengual@debian.org>)
+
 === RELEASE 2.21 ===
 
 Sun Aug  2 15:26:02 cet 2020 mikulas:

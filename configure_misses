@@ -1,54 +1,54 @@
-Configure miss: whether the C compiler (gcc -O2 -g -feliminate-unused-debug-types -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=32 -Wformat -Wformat-security -Wl,-z,now,-z,relro,-z,max-page-size=0x1000,-z,separate-code -Wno-error -ftree-vectorize -ftree-slp-vectorize -Wl,--enable-new-dtags -fcf-protection=return -Wl,--build-id=sha1 -Wa,-mbranches-within-32B-boundaries -m64 -march=westmere -mtune=haswell -fasynchronous-unwind-tables -fno-omit-frame-pointer -Wp,-D_REENTRANT -fno-lto  -fPIC  -Wl,--build-id=sha1) is a cross-compiler
-Configure miss: EMX
-Configure miss: OpenWatcom
-Configure miss: DJGPP
 Configure miss: ARM64 ILP32
-Configure miss: pointer comparison bug
-Configure miss: maxint conversion bug
-Configure miss: opendir in -ldir
-Configure miss: bsd/string.h
-Configure miss: cygwin/process.h
-Configure miss: cygwin/version.h
-Configure miss: ieee.h
-Configure miss: interix/interix.h
-Configure miss: net/socket.h
-Configure miss: netinet/in_system.h
-Configure miss: sys/cygwin.h
-Configure miss: sys/fmutex.h
-Configure miss: umalloc.h
-Configure miss: unixlib.h
-Configure miss: uwin.h
-Configure miss: big endian
-Configure miss: cygwin_conv_path
-Configure miss: cygwin_conv_to_full_win32_path
-Configure miss: unixpath2win
-Configure miss: uwin_path
-Configure miss: winpath2unix
+Configure miss: BrotliDecoderDecompressStream in -lbrotlidec
+Configure miss: CRYPTO_set_mem_functions without file/line
+Configure miss: DJGPP
+Configure miss: EMX
+Configure miss: LZ_decompress_open in -llz
+Configure miss: MouOpen
+Configure miss: OS/2 threads
+Configure miss: OpenWatcom
+Configure miss: RAND_egd
+Configure miss: SSL_get1_peer_certificate
+Configure miss: SSL_load_error_strings
+Configure miss: XFree for OS/2
+Configure miss: __strtoll
 Configure miss: _heapmin
 Configure miss: _msize
+Configure miss: _read_kbd
 Configure miss: _ucreate
 Configure miss: _udefault
 Configure miss: _udestroy
 Configure miss: _uopen
-Configure miss: __strtoll
-Configure miss: strmode in -lbsd
+Configure miss: atheos/threads.h
+Configure miss: big endian
+Configure miss: brotli/decode.h
+Configure miss: bsd/string.h
+Configure miss: cygwin/process.h
+Configure miss: cygwin/version.h
+Configure miss: cygwin_conv_path
+Configure miss: cygwin_conv_to_full_win32_path
+Configure miss: ev-event.h
+Configure miss: event.h
+Configure miss: ieee.h
 Configure miss: if you want to enable javascript
 Configure miss: if you want to use graphics
-Configure miss: event.h
-Configure miss: ev-event.h
-Configure miss: OS/2 threads
-Configure miss: atheos/threads.h
-Configure miss: spawn_thread
-Configure miss: resume_thread
-Configure miss: MouOpen
-Configure miss: _read_kbd
-Configure miss: XFree for OS/2
-Configure miss: RAND_egd
-Configure miss: SSL_get1_peer_certificate
-Configure miss: SSL_load_error_strings
-Configure miss: CRYPTO_set_mem_functions without file/line
-Configure miss: brotli/decode.h
-Configure miss: BrotliDecoderDecompressStream in -lbrotlidec
+Configure miss: interix/interix.h
 Configure miss: lzlib.h
-Configure miss: LZ_decompress_open in -llz
+Configure miss: maxint conversion bug
+Configure miss: net/socket.h
+Configure miss: netinet/in_system.h
+Configure miss: opendir in -ldir
+Configure miss: pointer comparison bug
 Configure miss: pthread_sigmask
+Configure miss: resume_thread
+Configure miss: spawn_thread
+Configure miss: strmode in -lbsd
+Configure miss: sys/cygwin.h
+Configure miss: sys/fmutex.h
+Configure miss: umalloc.h
+Configure miss: unixlib.h
+Configure miss: unixpath2win
+Configure miss: uwin.h
+Configure miss: uwin_path
+Configure miss: whether the C compiler (gcc -O2 -g -feliminate-unused-debug-types -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=32 -Wformat -Wformat-security -Wl,-z,now,-z,relro,-z,max-page-size=0x1000,-z,separate-code -Wno-error -ftree-vectorize -ftree-slp-vectorize -Wl,--enable-new-dtags -fcf-protection=return -Wl,--build-id=sha1 -Wa,-mbranches-within-32B-boundaries -m64 -march=westmere -mtune=haswell -fasynchronous-unwind-tables -fno-omit-frame-pointer -Wp,-D_REENTRANT -fno-lto  -fPIC  -Wl,--build-id=sha1) is a cross-compiler
+Configure miss: winpath2unix
