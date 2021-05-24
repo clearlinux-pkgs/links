@@ -1,3 +1,23 @@
+=== RELEASE 2.23 ===
+
+Tue May 18 20:35:55 CEST 2021 mikulas:
+
+	Fix a bug that the user could set floating-point parameters to nan
+	via command-line argument or config file option
+
+Tue May 18 20:22:35 CEST 2021 mikulas:
+
+	Fix broken display if the user uses custom font and non-default
+	aspect ratio
+
+Wed May 12 20:08:48 CEST 2021 mikulas:
+
+	Fix a bug that the code incorrectly assumed that mktime returns UTC
+
+Sat May  1 17:56:50 CEST 2021 mikulas:
+
+	Add an option that enables cookie saving
+
 === RELEASE 2.22 ===
 
 Sat Jan 23 18:11:41 CET 2021 mikulas:
