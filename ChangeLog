@@ -1,3 +1,33 @@
+=== RELEASE 2.24 ===
+
+Mon Sep 13 18:31:27 CEST 2021 mikulas:
+
+	Avoid a hang in the X driver if the program that converts a selection
+	stops responding. Use 10 second timeout.
+
+Fri Sep 10 18:37:30 CEST 2021 mikulas:
+
+	Fix a crash in the X driver if some window asks for clipboard and is
+	closed before Links responds to this request
+
+Wed Sep  8 18:21:42 CEST 2021 mikulas:
+
+	Fix a crash on OS/2 SMP systems - it was caused by a bug in OpenSSL
+
+Sun Sep  5 11:12:47 CEST 2021 mikulas:
+
+	Workaround for a bug on Minix 3 - don't close signal pipe when spawning
+	a shell
+
+Thu Aug 19 19:54:43 CEST 2021 Emir Yasin SARI <bitigchi@me.com>:
+
+	Updated the Turkish translation
+
+Sun Jul  4 18:02:44 CEST 2021 mikulas:
+
+	Support the "id" attribute on COLGROUP, COL, TR, THEAD, TBODY, TFOOT
+	tags
+
 === RELEASE 2.23 ===
 
 Tue May 18 20:35:55 CEST 2021 mikulas:
