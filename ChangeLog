@@ -1,3 +1,15 @@
+=== RELEASE 2.25 ===
+
+Fri Oct  1 18:27:25 CEST 2021 mikulas:
+
+	Delete the expired Let's encrypt certificate from the builtin
+	certificate store
+
+Thu Sep 30 21:45:10 CET 2021 mikulas:
+
+	Set the flag X509_V_FLAG_TRUSTED_FIRST, so that Let's encrypt works
+	with openssl-1.0.2
+
 === RELEASE 2.24 ===
 
 Mon Sep 13 18:31:27 CEST 2021 mikulas:
