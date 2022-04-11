@@ -1,3 +1,44 @@
+=== RELEASE 2.26 ===
+
+Wed Apr  6 18:13:16 CEST 2022 mikulas:
+
+	Fix a display glitch if the list is empty and the user presses '*'
+
+Sat Mar 26 11:09:12 CET 2022 mikulas:
+
+	Add a possibility to pass gopher:// URLs to an external program
+
+Sat Jan  1 14:46:06 CET 2022 Martin Michel <martin.famic.de>:
+
+	Updated the German translation
+	Updated the initial bookmarks
+
+Fri Dec 24 12:47:58 CET 2021 zinov@waifu.club:
+
+	Fix a bug when form submit url contained '#'
+
+Sun Dec  5 18:17:11 CET 2021 mikulas:
+
+	Support WEBP images
+
+Fri Dec  3 17:40:55 CET 2021 mikulas:
+
+	Support DNS-over-HTTPS
+
+Sun Nov 21 11:36:45 CET 2021 mikulas:
+
+	Try multiple IPv4 addresses on systems that don't have getaddrinfo
+
+Sun Nov 14 20:55:11 CET 2021 Timur Adamov <nbvec222@gmail.com>:
+
+	Handle the "TD" tag outside "TR" the same way as in other browsers
+
+Tue Oct 19 18:42:50 CEST 2021 mikulas:
+
+	Make it possible to bind a socket to a network interface
+	It could be activated by specifying interface name in the "Bind to local
+	IP address" box
+
 === RELEASE 2.25 ===
 
 Fri Oct  1 18:27:25 CEST 2021 mikulas:
