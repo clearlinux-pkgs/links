@@ -1,3 +1,22 @@
+=== RELEASE 2.27 ===
+
+Fri May 27 20:10:59 CEST 2022 mikulas:
+
+	Compile the Windows version with libevent 2.0 (note that libevent 2.1
+	doesn't work on Windows 7)
+
+	This fixes "Fatal error: too big handle" because Cygwin has too low
+	FD_SETSIZE (64)
+
+Wed Apr 13 19:43:10 CEST 2022 Emir Yasin SARI <bitigchi@me.com>:
+
+	Updated the Turkish translation
+
+Mon Apr 11 19:23:19 CEST 2022 mikulas:
+
+	Allow the user to specify a numeric IPv6 address in the dns-over-https
+	box
+
 === RELEASE 2.26 ===
 
 Wed Apr  6 18:13:16 CEST 2022 mikulas:
