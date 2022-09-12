@@ -4,7 +4,7 @@
 #
 Name     : links
 Version  : 2.27
-Release  : 26
+Release  : 27
 URL      : http://links.twibright.com/download/links-2.27.tar.bz2
 Source0  : http://links.twibright.com/download/links-2.27.tar.bz2
 Summary  : No detailed summary available
