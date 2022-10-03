@@ -1,3 +1,23 @@
+=== RELEASE 2.28 ===
+
+Sat Sep 17 21:54:44 CEST 2022 mikulas:
+
+	Disable cache when following redirects from consent.google.com
+
+Sat Sep 10 16:05:02 CEST 2022 mikulas:
+
+	On Windows, change the default directory to the "Downloads" directory,
+	so that downloaded files are placed there
+
+Sat Sep 10 15:31:20 CEST 2022 mikulas:
+
+	Compile the 32-bit Windows version without SSE2 instructions
+
+Tue May 31 21:07:51 CEST 2022 mikulas:
+
+	Fix a display glitch on framebuffer, if the user doesn't have mouse and
+	if he presses F5, F6, F7 or F8
+
 === RELEASE 2.27 ===
 
 Fri May 27 20:10:59 CEST 2022 mikulas:

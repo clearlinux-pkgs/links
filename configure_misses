@@ -8,7 +8,6 @@ Configure miss: MouOpen
 Configure miss: OS/2 threads
 Configure miss: OpenWatcom
 Configure miss: RAND_egd
-Configure miss: SSL_get1_peer_certificate
 Configure miss: SSL_load_error_strings
 Configure miss: XFree for OS/2
 Configure miss: __strtoll
@@ -49,5 +48,5 @@ Configure miss: unixlib.h
 Configure miss: unixpath2win
 Configure miss: uwin.h
 Configure miss: uwin_path
-Configure miss: whether the C compiler (gcc -O2 -g -feliminate-unused-debug-types -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=64 -Wformat -Wformat-security -Wl,-z,now,-z,relro,-z,max-page-size=0x1000,-z,separate-code -Wno-error -ftree-vectorize -ftree-slp-vectorize -Wl,--enable-new-dtags -fcf-protection=return -Wl,--build-id=sha1  -ftrivial-auto-var-init=zero -mrelax-cmpxchg-loop -m64 -march=westmere -mtune=skylake-avx512 -fasynchronous-unwind-tables -Wp,-D_REENTRANT -fno-lto  -fPIC  -Wl,--build-id=sha1) is a cross-compiler
+Configure miss: whether the C compiler (gcc -O2 -g -feliminate-unused-debug-types -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=64 -Wformat -Wformat-security -Wl,-z,now,-z,relro,-z,max-page-size=0x4000,-z,separate-code -Wno-error -ftree-vectorize -ftree-slp-vectorize -Wl,--enable-new-dtags  -Wl,--build-id=sha1  -ftrivial-auto-var-init=zero -mrelax-cmpxchg-loop -m64 -march=westmere -mtune=skylake-avx512 -fasynchronous-unwind-tables -Wp,-D_REENTRANT -fno-lto  -fPIC  -Wl,--build-id=sha1) is a cross-compiler
 Configure miss: winpath2unix
