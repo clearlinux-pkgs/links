@@ -1,3 +1,29 @@
+=== RELEASE 2.29 ===
+
+Thu Mar  9 19:51:20 CET 2023 Florian Weimer <fweimer@redhat.com>:
+
+	Add "#define _GNU_SOURCE" to the configure test for memrchr
+
+Thu Mar  9 18:37:12 CET 2023 Juhani Krekela <juhani@krekela.fi>:
+
+	Implement strike formatting
+
+Wed Mar  8 20:08:01 CET 2023 mikulas:
+
+	Fixed a bug that image was sometimes displayed with too small size
+
+Mon Jan 23 19:25:18 CET 2023 mikulas:
+
+	Fixed a bug that webp images from local disk could not be displayed
+
+Mon Jan 23 19:24:06 CET 2023 notcancername <notcancername@protonmail.com>:
+
+	Support AVIF images
+
+Sun Oct  9 15:54:06 CEST 2022 Jakub Bogusz <qboosh@pld-linux.org>:
+
+	Updated Polish Translation
+
 === RELEASE 2.28 ===
 
 Sat Sep 17 21:54:44 CEST 2022 mikulas:
