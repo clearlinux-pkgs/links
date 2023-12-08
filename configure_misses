@@ -1,5 +1,4 @@
 Configure miss: ARM64 ILP32
-Configure miss: BrotliDecoderDecompressStream in -lbrotlidec
 Configure miss: CRYPTO_set_mem_functions without file/line
 Configure miss: DJGPP
 Configure miss: EMX
@@ -20,7 +19,6 @@ Configure miss: _udestroy
 Configure miss: _uopen
 Configure miss: atheos/threads.h
 Configure miss: big endian
-Configure miss: brotli/decode.h
 Configure miss: bsd/string.h
 Configure miss: cygwin/process.h
 Configure miss: cygwin/version.h
@@ -48,5 +46,5 @@ Configure miss: unixlib.h
 Configure miss: unixpath2win
 Configure miss: uwin.h
 Configure miss: uwin_path
-Configure miss: whether the C compiler (gcc -O2 -g -feliminate-unused-debug-types -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=64 -Wformat -Wformat-security -Wl,-z,now,-z,relro,-z,max-page-size=0x4000,-z,separate-code -Wno-error -ftree-vectorize -ftree-slp-vectorize -Wl,--enable-new-dtags  -Wl,--build-id=sha1  -ftrivial-auto-var-init=zero -mrelax-cmpxchg-loop -gz -m64 -march=westmere -mtune=sapphirerapids -fasynchronous-unwind-tables -Wp,-D_REENTRANT -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz  -fPIC  -Wl,--build-id=sha1) is a cross-compiler
+Configure miss: whether the C compiler (gcc -O2 -g -feliminate-unused-debug-types -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=64 -Wformat -Wformat-security -Wl,-z,now,-z,relro,-z,max-page-size=0x4000,-z,separate-code -Wno-error -ftree-vectorize -ftree-slp-vectorize -Wl,--enable-new-dtags  -Wl,--build-id=sha1  -ftrivial-auto-var-init=zero -mrelax-cmpxchg-loop -gz=zstd -ffunction-sections -m64 -march=westmere -mtune=sapphirerapids -fasynchronous-unwind-tables -Wp,-D_REENTRANT -fPIC -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd  -Wl,--build-id=sha1) is a cross-compiler
 Configure miss: winpath2unix
